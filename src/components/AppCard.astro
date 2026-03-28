@@ -1,0 +1,22 @@
+---
+import type { AppEntry } from '../data/schema';
+
+interface Props {
+  app: AppEntry;
+}
+
+const { app } = Astro.props;
+---
+
+<article class="app-card">
+  <div class="app-card__meta">
+    <p class="pill">{app.status}</p>
+    <p class="app-card__platforms">{app.platforms.join(' · ')}</p>
+  </div>
+  <h3>{app.name}</h3>
+  <p>{app.shortDescription}</p>
+  <div class="button-row">
+    <a class="button button--secondary" href={`/codeworks/apps/${app.slug}/`}>View support page</a>
+    <a class="button button--ghost" href={app.supportPath}>Support</a>
+  </div>
+</article>

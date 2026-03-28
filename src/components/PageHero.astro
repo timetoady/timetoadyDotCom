@@ -1,0 +1,33 @@
+---
+import type { ThemeName } from '../data/schema';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  theme?: ThemeName;
+  variant?: 'default' | 'split' | 'document';
+}
+
+const { eyebrow, title, intro, theme = 'default', variant = 'default' } = Astro.props;
+---
+
+<section class:list={['page-hero', `theme-${theme}`, `page-hero--${variant}`]}>
+  <div class="shell">
+    <div class:list={['page-hero__grid', { 'page-hero__grid--split': variant === 'split' }]}>
+      <div class="page-hero__main">
+        <p class="eyebrow">{eyebrow}</p>
+        <h1>{title}</h1>
+        <p class="lede">{intro}</p>
+        <slot />
+      </div>
+      {
+        variant === 'split' && (
+          <div class="page-hero__aside">
+            <slot name="aside" />
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

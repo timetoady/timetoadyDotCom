@@ -1,0 +1,83 @@
+---
+import AppCard from '../../../components/AppCard.astro';
+import PageHero from '../../../components/PageHero.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { apps } from '../../../data/apps';
+---
+
+<BaseLayout
+  title="Codeworks Apps"
+  description="Browse the current timetoady Codeworks app support pages and the shared Android support hub."
+  path="/codeworks/apps/"
+  theme="codeworks"
+>
+  <PageHero
+    eyebrow="App support"
+    title="Practical support entries for current and upcoming timetoady apps."
+    intro="This directory is where Codeworks app support pages live. Launch starts with one shared Android support hub, then grows into dedicated entries when public app listings need more granular help."
+    theme="codeworks"
+    variant="split"
+  >
+    <div class="button-row">
+      <a class="button button--primary" href="/codeworks/support/">Support contact</a>
+      <a class="button button--ghost" href="/codeworks/privacy/">Privacy policy</a>
+    </div>
+    <div slot="aside" class="panel panel--quiet">
+      <p class="eyebrow">Directory scope</p>
+      <div class="fact-list">
+        <div>
+          <strong>{apps.length} live entry</strong>
+          <span>The current app support footprint is small by design, not accidental.</span>
+        </div>
+        <div>
+          <strong>Shared first, specific later</strong>
+          <span>Each future app can split into its own support page when it needs separate FAQs.</span>
+        </div>
+      </div>
+    </div>
+  </PageHero>
+
+  <section class="section-block">
+    <div class="shell">
+      <div class="directory-layout">
+        <div class="app-directory-list">
+          {apps.map((app) => <AppCard app={app} />)}
+          <article class="panel panel--quiet">
+            <p class="eyebrow">Next addition</p>
+            <h3>Dedicated app pages slot into the same structure.</h3>
+            <p>
+              When a specific Play Store listing needs its own support notes, release-specific FAQ, or public issue
+              guidance, it can be added here without changing the directory layout.
+            </p>
+          </article>
+        </div>
+        <aside class="directory-layout__aside">
+          <article class="panel panel--quiet">
+            <p class="eyebrow">Where links should point</p>
+            <dl class="utility-list">
+              <div>
+                <dt>General app support</dt>
+                <dd><a href="/codeworks/support/">Use the support page</a></dd>
+              </div>
+              <div>
+                <dt>Policy coverage</dt>
+                <dd><a href="/codeworks/privacy/">Use the privacy page</a></dd>
+              </div>
+              <div>
+                <dt>Developer identity</dt>
+                <dd><a href="/codeworks/">Use the Codeworks overview</a></dd>
+              </div>
+            </dl>
+          </article>
+          <article class="panel panel--codeworks">
+            <p class="eyebrow">Why this hub matters</p>
+            <p>
+              Even with one entry, this route gives Play Store users a stable public index instead of dropping them
+              into a sparse placeholder or a generic company about page.
+            </p>
+          </article>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

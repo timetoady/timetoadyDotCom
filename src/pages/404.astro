@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="The requested timetoady page could not be found."
+  path="/404/"
+>
+  <section class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">404</p>
+      <h1>That page is not here.</h1>
+      <p class="lede">
+        The route may have moved or may not exist yet. Use the links below to get back to the main sections.
+      </p>
+      <div class="button-row">
+        <a class="button button--primary" href="/">Home</a>
+        <a class="button button--ghost" href="/codeworks/">Codeworks</a>
+        <a class="button button--ghost" href="/songworks/">Songworks</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import { contact } from '../data/contact';
+import brandIcon from '../assets/brand/TimeToadyIcon.png';
+
+interface Props {
+  variant?: 'full' | 'compact';
+}
+
+const { variant = 'full' } = Astro.props;
+---
+
+<footer class:list={['site-footer', `site-footer--${variant}`]}>
+  <div class="shell">
+    {
+      variant === 'compact' ? (
+        <div class="footer-compact">
+          <div class="footer-compact__meta">
+            <a class="brandmark brandmark--footer" href="/">
+              <span class="brandmark__icon-wrap">
+                <Image src={brandIcon} alt="" width={34} height={34} class="brandmark__icon" />
+              </span>
+              <span>
+                <strong>timetoady</strong>
+                <small>Codeworks + Songworks</small>
+              </span>
+            </a>
+            <span class="footer-compact__copy">Support, privacy, and public project links under one domain.</span>
+          </div>
+          <div class="footer-compact__links">
+            <a href={`mailto:${contact.supportEmail}`}>{contact.supportEmail}</a>
+            <a href="/codeworks/privacy/">Privacy</a>
+            <a href="/songworks/">Songworks</a>
+          </div>
+        </div>
+      ) : (
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="brandmark brandmark--footer">
+              <span class="brandmark__icon-wrap">
+                <Image src={brandIcon} alt="" width={34} height={34} class="brandmark__icon" />
+              </span>
+              <span>
+                <strong>timetoady</strong>
+                <small>Codeworks + Songworks</small>
+              </span>
+            </div>
+            <h2>Independent software and music projects with stable public support pages.</h2>
+          </div>
+          <div>
+            <p class="footer-heading">Reach out</p>
+            <ul class="footer-list">
+              <li><a href={`mailto:${contact.generalEmail}`}>{contact.generalEmail}</a></li>
+              <li><a href={`mailto:${contact.supportEmail}`}>{contact.supportEmail}</a></li>
+              <li><a href={contact.youtubeChannelUrl} target="_blank" rel="noreferrer">YouTube channel</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer-heading">Paths</p>
+            <ul class="footer-list">
+              <li><a href="/codeworks/">Codeworks</a></li>
+              <li><a href="/codeworks/privacy/">Privacy</a></li>
+              <li><a href="/songworks/">Songworks</a></li>
+            </ul>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</footer>

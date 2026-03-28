@@ -1,0 +1,88 @@
+---
+import '../styles/global.css';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { siteConfig, toAbsoluteUrl } from '../data/site';
+import type { ThemeName } from '../data/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  theme?: ThemeName;
+  footerVariant?: 'full' | 'compact';
+}
+
+const {
+  title,
+  description,
+  path = Astro.url.pathname,
+  theme = 'default',
+  footerVariant = path === '/' ? 'full' : 'compact',
+} = Astro.props;
+const pageTitle = `${title} | ${siteConfig.name}`;
+const canonicalUrl = toAbsoluteUrl(path);
+const socialImage = toAbsoluteUrl('/og-card.jpg');
+const themeBootstrap = `
+(() => {
+  const storageKey = 'timetoady-theme';
+  const themeColorMap = { light: '#edf2f8', dark: '#071019' };
+
+  try {
+    const stored = localStorage.getItem(storageKey);
+    const systemTheme =
+      window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const theme = stored === 'dark' || stored === 'light' ? stored : systemTheme;
+
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) themeMeta.setAttribute('content', themeColorMap[theme]);
+  } catch {
+    document.documentElement.dataset.theme = 'light';
+    document.documentElement.style.colorScheme = 'light';
+  }
+})();
+`;
+---
+
+<!doctype html>
+<html lang="en" class:list={[`theme-${theme}`]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#071019" />
+    <script is:inline set:html={themeBootstrap}></script>
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImage} />
+    <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page-chrome">
+      <SiteHeader currentPath={Astro.url.pathname} />
+      <main>
+        <slot />
+      </main>
+      <SiteFooter variant={footerVariant} />
+    </div>
+  </body>
+</html>

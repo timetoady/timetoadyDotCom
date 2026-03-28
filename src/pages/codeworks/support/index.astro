@@ -1,0 +1,102 @@
+---
+import PageHero from '../../../components/PageHero.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { contact } from '../../../data/contact';
+---
+
+<BaseLayout
+  title="Codeworks Support"
+  description="How to contact timetoady Codeworks for app support, bug reports, and feature requests."
+  path="/codeworks/support/"
+  theme="codeworks"
+>
+  <PageHero
+    eyebrow="Support"
+    title="Email-first support for timetoady Codeworks apps."
+    intro="Support is intentionally simple. If you need help with a timetoady app, send one email with enough device and app context to make the request actionable."
+    theme="codeworks"
+  >
+    <div class="button-row">
+      <a class="button button--primary button--stacked" href={`mailto:${contact.supportEmail}`}>
+        <span class="button__label">Email support inbox</span>
+        <span class="button__meta">{contact.supportEmail}</span>
+      </a>
+      <a class="button button--ghost" href="/codeworks/privacy/">Read privacy policy</a>
+    </div>
+  </PageHero>
+
+  <section class="section-block">
+    <div class="shell support-layout">
+      <div class="support-layout__main">
+        <article class="panel panel--spotlight panel--codeworks">
+          <p class="eyebrow">How to get help</p>
+          <h2>Send one message with enough context to reproduce the problem.</h2>
+          <ol class="step-list">
+            <li>Include the app name or Play Store listing name.</li>
+            <li>Add the device model, Android version, and what you expected to happen.</li>
+            <li>Attach screenshots or reproduction steps if they make the issue clearer.</li>
+          </ol>
+          <div class="button-row">
+            <a class="button button--primary button--stacked" href={`mailto:${contact.supportEmail}`}>
+              <span class="button__label">Write to support</span>
+              <span class="button__meta">{contact.supportEmail}</span>
+            </a>
+          </div>
+        </article>
+      </div>
+      <aside class="support-layout__side">
+        <article class="panel panel--quiet">
+          <p class="eyebrow">Response expectations</p>
+          <div class="fact-list">
+            <div>
+              <strong>Support inbox</strong>
+              <span>
+                <a href={`mailto:${contact.supportEmail}`}>{contact.supportEmail}</a>
+              </span>
+            </div>
+            <div>
+              <strong>General contact</strong>
+              <span>
+                <a href={`mailto:${contact.generalEmail}`}>{contact.generalEmail}</a>
+              </span>
+            </div>
+            <div>
+              <strong>Typical response window</strong>
+              <span>{contact.responseWindow}</span>
+            </div>
+            <div>
+              <strong>Timezone</strong>
+              <span>{contact.timezone}</span>
+            </div>
+          </div>
+        </article>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section-block section-block--tight">
+    <div class="shell">
+      <div class="section-intro">
+        <p class="eyebrow">Support flow</p>
+        <h2>What kind of request goes where.</h2>
+      </div>
+      <div class="support-flow">
+        <article class="support-step support-step--compact">
+          <span class="support-step__number">1</span>
+          <h3>Report a bug</h3>
+          <p>Include reproduction steps and the device/app version details that make the issue traceable.</p>
+        </article>
+        <article class="support-step support-step--compact">
+          <span class="support-step__number">2</span>
+          <h3>Request a feature</h3>
+          <p>Send the use case, not just the feature name. Context makes prioritization easier.</p>
+        </article>
+        <article class="support-step support-step--compact">
+          <span class="support-step__number">3</span>
+          <h3>Need a support link</h3>
+          <p>Play Store listings can point here now, or to a dedicated app page later if support needs split out.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

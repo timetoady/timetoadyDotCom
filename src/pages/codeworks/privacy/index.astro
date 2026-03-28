@@ -1,0 +1,110 @@
+---
+import PageHero from '../../../components/PageHero.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { contact } from '../../../data/contact';
+---
+
+<BaseLayout
+  title="Codeworks Privacy Policy"
+  description="Privacy policy for timetoady Codeworks websites and current or future app support pages."
+  path="/codeworks/privacy/"
+  theme="codeworks"
+>
+  <PageHero
+    eyebrow="Privacy policy"
+    title="Privacy information for timetoady Codeworks."
+    intro="This page describes how the timetoady Codeworks website and support pages handle information. It stays as plain HTML so it can be linked directly from Play Store listings and public support pages."
+    theme="codeworks"
+    variant="document"
+  >
+    <div class="button-row">
+      <a class="button button--primary" href="/codeworks/support/">Support contact</a>
+      <a class="button button--ghost" href={`mailto:${contact.generalEmail}`}>Business contact</a>
+    </div>
+  </PageHero>
+
+  <section class="section-block">
+    <div class="shell policy-layout">
+      <aside class="policy-layout__meta">
+        <nav class="policy-nav" aria-label="Privacy sections">
+          <div>
+            <p class="eyebrow">On this page</p>
+            <div class="policy-nav__list">
+              <a href="#scope">Scope and updates</a>
+              <a href="#website-data">Website data handling</a>
+              <a href="#support-communications">Support communications</a>
+              <a href="#app-disclosures">App-specific disclosures</a>
+              <a href="#external-links">External links</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </div>
+          <div class="policy-meta">
+            <p><strong>Last updated:</strong> March 28, 2026</p>
+            <p><strong>Primary contact:</strong> {contact.generalEmail}</p>
+          </div>
+        </nav>
+      </aside>
+
+      <article class="policy-document">
+        <section class="policy-section" id="scope">
+          <p class="eyebrow">Scope and updates</p>
+          <h2>What this policy covers right now.</h2>
+          <p>
+            This policy covers the public timetoady Codeworks website and the launch support pages hosted on
+            timetoady.com. If a future app uses analytics, accounts, payments, or additional third-party services,
+            this policy should be expanded before that app is published or updated.
+          </p>
+        </section>
+
+        <section class="policy-section" id="website-data">
+          <h2>Website data handling</h2>
+          <p>
+            The public website is a static site hosted through Bluehost. It does not provide account creation,
+            comments, direct uploads, or a custom contact form.
+          </p>
+          <p>
+            If you choose to send an email to a listed contact address, your message and any information you include
+            are processed through the email provider used for that inbox.
+          </p>
+        </section>
+
+        <section class="policy-section" id="support-communications">
+          <h2>Support communications</h2>
+          <p>
+            Support emails may include device details, app names, screenshots, or issue descriptions. That information
+            is used only to respond to support requests, investigate bugs, and improve app quality. It is not sold.
+          </p>
+        </section>
+
+        <section class="policy-section" id="app-disclosures">
+          <h2>App-specific disclosures</h2>
+          <p>
+            Individual apps may need additional privacy disclosures depending on the features they include. Before
+            publishing any app that collects personal data, uses advertising, or integrates third-party analytics or
+            cloud services, timetoady Codeworks should update this policy and the relevant store disclosures.
+          </p>
+          <ul class="policy-list">
+            <li>Add app names and package names once public listings exist.</li>
+            <li>List any third-party SDKs or processors that handle personal data.</li>
+            <li>Describe retention or deletion handling if user-submitted data is stored.</li>
+          </ul>
+        </section>
+
+        <section class="policy-section" id="external-links">
+          <h2>External links</h2>
+          <p>
+            This site may link to external services such as Google Play, YouTube, or DistroKid. Those services
+            operate under their own privacy policies and terms.
+          </p>
+        </section>
+
+        <section class="policy-section" id="contact">
+          <h2>Contact</h2>
+          <p>
+            Questions about privacy can be sent to <a href={`mailto:${contact.generalEmail}`}>{contact.generalEmail}</a>.
+          </p>
+        </section>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

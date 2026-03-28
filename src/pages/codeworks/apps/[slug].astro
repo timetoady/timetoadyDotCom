@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { apps } from '../../../data/apps';
+
+export function getStaticPaths() {
+  return apps.map((app) => ({
+    params: { slug: app.slug },
+    props: { app },
+  }));
+}
+
+const { app } = Astro.props;
+---
+
+<BaseLayout
+  title={app.name}
+  description={app.shortDescription}
+  path={`/codeworks/apps/${app.slug}/`}
+  theme="codeworks"
+>
+  <section class="page-hero theme-codeworks">
+    <div class="shell">
+      <p class="eyebrow">App support page</p>
+      <h1>{app.name}</h1>
+      <p class="lede">{app.longDescription}</p>
+      <div class="button-row">
+        <a class="button button--primary" href={`mailto:${app.supportEmail}`}>Email support</a>
+        <a class="button button--ghost" href={app.privacyPolicyUrl}>Privacy policy</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="shell detail-grid">
+      <article class="card">
+        <p class="eyebrow">Summary</p>
+        <h2>Current support details</h2>
+        <ul class="policy-list">
+          <li>Status: {app.status}</li>
+          <li>Platforms: {app.platforms.join(', ')}</li>
+          <li>
+            Support email: <a href={`mailto:${app.supportEmail}`}>{app.supportEmail}</a>
+          </li>
+          <li>
+            Privacy policy: <a href={app.privacyPolicyUrl}>{app.privacyPolicyUrl}</a>
+          </li>
+          <li>
+            Play Store listing:
+            {' '}
+            {app.playStoreUrl ? (
+              <a href={app.playStoreUrl} target="_blank" rel="noreferrer">
+                View listing
+              </a>
+            ) : (
+              'Link will be added when a public listing is live.'
+            )}
+          </li>
+        </ul>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Support notes</p>
+        <h2>What to include in an email</h2>
+        <ul class="policy-list">
+          {app.supportNotes.map((note) => <li>{note}</li>)}
+        </ul>
+        <div class="button-row">
+          <a class="button button--secondary" href={app.supportPath}>Open support guide</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="shell">
+      <div class="section-intro">
+        <p class="eyebrow">FAQ</p>
+        <h2>Shared launch answers</h2>
+      </div>
+      <div class="card stack">
+        {
+          app.faq.map((item) => (
+            <article class="faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

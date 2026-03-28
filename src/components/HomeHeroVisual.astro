@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import brandIcon from '../assets/brand/TimeToadyIcon.png';
+---
+
+<div class="hero-tech" aria-hidden="true">
+  <div class="hero-tech__frame">
+    <div class="hero-tech__grid"></div>
+    <div class="hero-tech__glow hero-tech__glow--primary"></div>
+    <div class="hero-tech__glow hero-tech__glow--secondary"></div>
+
+    <div class="hero-tech__chip hero-tech__chip--top">play store-ready shell</div>
+    <div class="hero-tech__chip hero-tech__chip--left">codeworks</div>
+    <div class="hero-tech__chip hero-tech__chip--right">songworks</div>
+
+    <div class="hero-tech__core">
+      <span class="hero-tech__ring hero-tech__ring--outer"></span>
+      <span class="hero-tech__ring hero-tech__ring--inner"></span>
+      <span class="hero-tech__scanline"></span>
+      <div class="hero-tech__icon-wrap">
+        <Image src={brandIcon} alt="" width={220} height={220} class="hero-tech__icon" />
+      </div>
+    </div>
+
+    <div class="hero-tech__legend">
+      <div class="hero-tech__legend-item">
+        <span>Support</span>
+        <strong>stable public routes</strong>
+      </div>
+      <div class="hero-tech__legend-item">
+        <span>Brand</span>
+        <strong>lowercase timetoady</strong>
+      </div>
+      <div class="hero-tech__legend-item">
+        <span>Mode</span>
+        <strong>system-aware theme</strong>
+      </div>
+    </div>
+  </div>
+</div>

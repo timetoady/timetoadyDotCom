@@ -1,0 +1,147 @@
+---
+import { Image } from 'astro:assets';
+import AppCard from '../../components/AppCard.astro';
+import PageHero from '../../components/PageHero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { apps } from '../../data/apps';
+import headerImage from '../../assets/brand/TimeToadyHeaderLarge.png';
+---
+
+<BaseLayout
+  title="Codeworks"
+  description="timetoady Codeworks provides the developer-facing identity, app support, and policy pages for current and future mobile software releases."
+  path="/codeworks/"
+  theme="codeworks"
+>
+  <PageHero
+    eyebrow="timetoady Codeworks"
+    title="Developer identity, support routes, and policy pages that stay easy to trust."
+    intro="Codeworks is the software-facing branch of timetoady. It is built to give Play Store visitors a clear answer to who is publishing the app, how support works, and where privacy information lives."
+    theme="codeworks"
+    variant="split"
+  >
+    <div class="button-row">
+      <a class="button button--primary" href="/codeworks/apps/">Browse app support pages</a>
+      <a class="button button--ghost" href="/codeworks/support/">Contact support</a>
+    </div>
+    <div slot="aside" class="panel panel--codeworks panel--dense">
+      <p class="eyebrow">Current shape</p>
+      <div class="fact-list">
+        <div>
+          <strong>Support-ready routes</strong>
+          <span>Apps, support, and privacy all stay linkable as public HTML pages.</span>
+        </div>
+        <div>
+          <strong>Solo studio, clear ownership</strong>
+          <span>Built to feel credible without pretending there is a larger team behind it.</span>
+        </div>
+        <div>
+          <strong>Built to expand</strong>
+          <span>New apps can slot into the support structure without changing the public shell.</span>
+        </div>
+      </div>
+    </div>
+  </PageHero>
+
+  <section class="section-block">
+    <div class="shell">
+      <div class="feature-split">
+        <div class="banner-frame banner-frame--wide">
+          <Image src={headerImage} alt="timetoady Codeworks banner artwork" />
+        </div>
+        <div class="stack">
+          <article class="panel panel--spotlight panel--codeworks">
+            <p class="eyebrow">Why this page exists</p>
+            <h2>Built for real support traffic, not portfolio browsing.</h2>
+            <p>
+              Codeworks exists so app users can verify who published the software, where support requests go, and
+              which policy page applies. The site structure is deliberately plain to link, archive, and maintain.
+            </p>
+          </article>
+          <div class="proof-points">
+            <article class="proof-point">
+              <strong>Predictable URLs</strong>
+              <span>Support and privacy live under the same domain and stable route structure.</span>
+            </article>
+            <article class="proof-point">
+              <strong>Low-friction upkeep</strong>
+              <span>Static output keeps updates simple for shared hosting and future app additions.</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block section-block--tight">
+    <div class="shell">
+      <div class="section-intro section-intro--split">
+        <div>
+          <p class="eyebrow">Current support hub</p>
+          <h2>Launch with one intentional app directory entry.</h2>
+        </div>
+        <p class="section-intro__side">
+          The site starts with a shared Android support hub instead of pretending there is already a large catalog.
+          That makes the first release look deliberate rather than incomplete.
+        </p>
+      </div>
+      <div class="directory-layout">
+        <div class="app-directory-list">
+          {apps.map((app) => <AppCard app={app} />)}
+        </div>
+        <aside class="directory-layout__aside">
+          <article class="panel panel--quiet">
+            <p class="eyebrow">Utility routes</p>
+            <dl class="utility-list">
+              <div>
+                <dt>Support inbox</dt>
+                <dd><a href="/codeworks/support/">Email-first support flow</a></dd>
+              </div>
+              <div>
+                <dt>Privacy policy</dt>
+                <dd><a href="/codeworks/privacy/">Public HTML policy page</a></dd>
+              </div>
+              <div>
+                <dt>Future additions</dt>
+                <dd>Dedicated app pages can be added when individual public listings go live.</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="panel panel--quiet">
+            <p class="eyebrow">Linking guidance</p>
+            <p>
+              Store listings should point either to this shared app directory or to a dedicated app page once a
+              listing needs more specific FAQs and release notes.
+            </p>
+          </article>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block section-block--tight">
+    <div class="shell">
+      <div class="section-intro">
+        <p class="eyebrow">Support promise</p>
+        <h2>What users should expect from this site.</h2>
+      </div>
+      <div class="support-flow">
+        <article class="support-step">
+          <span class="support-step__number">1</span>
+          <h3>Direct contact</h3>
+          <p>Email-first support stays simpler and more credible than a thin ticket portal.</p>
+        </article>
+        <article class="support-step">
+          <span class="support-step__number">2</span>
+          <h3>Public policy coverage</h3>
+          <p>Privacy information is available as a stable page that can be linked from app listings.</p>
+        </article>
+        <article class="support-step">
+          <span class="support-step__number">3</span>
+          <h3>Room to grow cleanly</h3>
+          <p>Future apps and app-specific notes can be added without reshaping the whole site.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
