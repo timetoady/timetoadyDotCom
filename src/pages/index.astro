@@ -2,6 +2,7 @@
 import HomeHeroVisual from '../components/HomeHeroVisual.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { ventures } from '../data/ventures';
+import { homeHighlights } from '../data/site';
 ---
 
 <BaseLayout
@@ -115,9 +116,7 @@ import { ventures } from '../data/ventures';
           <article class="panel panel--quiet">
             <p class="eyebrow">What you can count on</p>
             <ul class="bullet-list">
-              <li>The person who built the app is the person who answers your support email.</li>
-              <li>Privacy policies stay public and linkable — no dead links from a store listing.</li>
-              <li>One studio, one name, whether you came for the code or the songs.</li>
+              {homeHighlights.map((highlight) => <li>{highlight}</li>)}
             </ul>
           </article>
         </div>

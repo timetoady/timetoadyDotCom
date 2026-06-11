@@ -18,14 +18,14 @@ export const navItems: LinkItem[] = [
   { label: 'Songworks', href: '/songworks/' },
 ];
 
-// NOTE: homeHighlights and trustSignals are not currently rendered by any page.
-// Kept here (visitor-facing) in case they get wired into the home or Codeworks page later.
+// homeHighlights renders in the "What you can count on" panel on the home page.
 export const homeHighlights = [
   'One studio behind both the apps and the songs — not a faceless publisher account.',
   'Every app gets a real support page and a privacy policy you can actually find.',
   'A working developer reads the inbox and answers it.',
 ] as const;
 
+// NOTE: trustSignals is not yet rendered by any page — wire in or delete.
 export const trustSignals = [
   'Built and maintained by a professional front-end developer.',
   'Support and privacy pages live at stable, linkable URLs for Play Store listings.',

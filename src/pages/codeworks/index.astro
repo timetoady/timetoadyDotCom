@@ -4,6 +4,7 @@ import AppCard from '../../components/AppCard.astro';
 import PageHero from '../../components/PageHero.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { apps } from '../../data/apps';
+import { projects } from '../../data/projects';
 import headerImage from '../../assets/brand/TimeToadyHeaderLarge.png';
 ---
 
@@ -69,6 +70,38 @@ import headerImage from '../../assets/brand/TimeToadyHeaderLarge.png';
             </article>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block section-block--tight">
+    <div class="shell">
+      <div class="section-intro section-intro--split">
+        <div>
+          <p class="eyebrow">Public work</p>
+          <h2>Things I've actually shipped.</h2>
+        </div>
+        <p class="section-intro__side">
+          Some apps aren't public yet — but these are. Open code, real downloads, nothing behind a waiting list.
+          A game, an Android accessibility tool, and the AI tooling I build to make the rest of this faster.
+        </p>
+      </div>
+      <div class="card-grid">
+        {
+          projects.map((project) => (
+            <article class:list={['card', project.accent && `card--${project.accent}`]}>
+              <p class="eyebrow">{project.category}</p>
+              <h3>{project.name}</h3>
+              <p>{project.description}</p>
+              <p class="muted">{project.tech.join(' · ')}</p>
+              <div class="button-row">
+                <a class="button button--secondary" href={project.href} target="_blank" rel="noreferrer">
+                  {project.hrefLabel}
+                </a>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>

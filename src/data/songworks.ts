@@ -24,25 +24,25 @@ export const songworksProcess: SongworksProcessStep[] = [
   },
   {
     title: 'Release',
-    description: 'Publish through DistroKid and pair the release with YouTube presence for discoverability.',
+    description: 'Distribute out to Spotify, iHeartRadio, and the other streaming platforms, then anchor each release with a YouTube video.',
   },
 ];
 
 export const songworksChannels: SongworksChannel[] = [
   {
-    name: 'YouTube channel',
+    name: 'YouTube',
     href: contact.youtubeChannelUrl,
-    description: 'Primary public channel for videos and listening links.',
+    description: 'The primary public channel — videos and listening links, with new releases as they land.',
   },
   {
-    name: 'DistroKid distribution',
-    href: 'https://distrokid.com/',
-    description: 'Distribution partner used to move finished releases onto streaming platforms.',
+    name: 'Spotify',
+    href: 'https://open.spotify.com/artist/3GJseKRcXOYA9EFTcDcEXt',
+    description: 'Stream the releases on Spotify, and follow the artist to catch the next one.',
   },
   {
-    name: 'Future release catalog',
-    href: '/songworks/',
-    description: 'This site will eventually grow into a home base for release pages and listening paths.',
+    name: 'iHeartRadio',
+    href: 'https://www.iheart.com/artist/timetoady-50145098/',
+    description: 'Listen to the catalog on iHeartRadio.',
   },
 ];
 

@@ -23,7 +23,7 @@ export const ventures: VentureEntry[] = [
     eyebrow: 'Music venture',
     headline: 'Original, lyric-led songs — written here, released to streaming and YouTube.',
     summary:
-      'Songworks is the music side of the studio: original lyrics, AI-assisted composition, careful mastering, and releases out through DistroKid and YouTube. Words first, then the music to carry them.',
+      'Songworks is the music side of the studio: original lyrics, AI-assisted composition, careful mastering, and releases out to Spotify, iHeartRadio, and YouTube. Words first, then the music to carry them.',
     href: '/songworks/',
     accent: 'songworks',
     bullets: [

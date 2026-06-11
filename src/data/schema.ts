@@ -36,6 +36,16 @@ export interface AppEntry {
   supportNotes: string[];
 }
 
+export interface ProjectEntry {
+  name: string;
+  category: string;
+  description: string;
+  tech: string[];
+  href: string;
+  hrefLabel: string;
+  accent?: ThemeName;
+}
+
 export interface SongworksChannel {
   name: string;
   href: string;
