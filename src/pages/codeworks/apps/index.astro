@@ -26,12 +26,12 @@ import { apps } from '../../../data/apps';
       <p class="eyebrow">Directory scope</p>
       <div class="fact-list">
         <div>
-          <strong>{apps.length} live entry</strong>
-          <span>The current app support footprint is small by design, not accidental.</span>
+          <strong>{apps.length} support entry</strong>
+          <span>One shared Android hub for now — small on purpose, not unfinished.</span>
         </div>
         <div>
-          <strong>Shared first, specific later</strong>
-          <span>Each future app can split into its own support page when it needs separate FAQs.</span>
+          <strong>Shared now, specific later</strong>
+          <span>When an app needs its own FAQs, it gets its own page here.</span>
         </div>
       </div>
     </div>
@@ -43,11 +43,11 @@ import { apps } from '../../../data/apps';
         <div class="app-directory-list">
           {apps.map((app) => <AppCard app={app} />)}
           <article class="panel panel--quiet">
-            <p class="eyebrow">Next addition</p>
-            <h3>Dedicated app pages slot into the same structure.</h3>
+            <p class="eyebrow">Coming soon</p>
+            <h3>More apps, each with its own page.</h3>
             <p>
-              When a specific Play Store listing needs its own support notes, release-specific FAQ, or public issue
-              guidance, it can be added here without changing the directory layout.
+              When an app needs its own support notes, release FAQ, or troubleshooting steps, it gets a dedicated
+              page right here — listed alongside this hub.
             </p>
           </article>
         </div>
@@ -70,10 +70,10 @@ import { apps } from '../../../data/apps';
             </dl>
           </article>
           <article class="panel panel--codeworks">
-            <p class="eyebrow">Why this hub matters</p>
+            <p class="eyebrow">Why it's here</p>
             <p>
-              Even with one entry, this route gives Play Store users a stable public index instead of dropping them
-              into a sparse placeholder or a generic company about page.
+              Even with one entry, this gives you a real place to land from the Play Store — a working support
+              index, not a placeholder or a generic "about the company" page.
             </p>
           </article>
         </aside>

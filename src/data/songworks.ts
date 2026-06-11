@@ -6,7 +6,7 @@ export const songworksSummary = {
   summary:
     'A songwriting and release practice built around original lyrics, AI-assisted composition, mastering, and consistent public publishing.',
   description:
-    'Songworks turns lyric ideas into finished releases through a repeatable solo workflow. The initial site focus is clarity: what the project is, how songs are made, and where listeners can follow the output.',
+    'Songworks turns a lyric into a finished release through one repeatable solo workflow — write, compose, master, publish. Here is what the project is, how the songs get made, and where to follow along.',
 };
 
 export const songworksProcess: SongworksProcessStep[] = [

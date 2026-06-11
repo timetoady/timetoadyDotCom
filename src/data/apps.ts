@@ -9,7 +9,7 @@ export const apps: AppEntry[] = [
     shortDescription:
       'Umbrella support and privacy entry for current and upcoming Android apps published under timetoady Codeworks.',
     longDescription:
-      'This page acts as the shared support landing point for timetoady Codeworks Android apps while the public catalog is still growing. Individual apps can be added later without changing the overall support and privacy structure.',
+      'This is the shared support landing point for timetoady Codeworks Android apps. Whichever app sent you here, this is where to reach the developer for help and find the privacy policy that applies. As more apps go live, each one gets its own page.',
     playStoreUrl: null,
     supportEmail: contact.supportEmail,
     privacyPolicyUrl: '/codeworks/privacy/',

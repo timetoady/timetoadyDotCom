@@ -5,7 +5,7 @@ export const siteConfig = {
   domain: 'https://timetoady.com',
   title: 'timetoady | Codeworks and Songworks',
   description:
-    'Independent software and song creation from timetoady, including Play Store-facing developer support pages and a growing music release project.',
+    'timetoady is the solo studio of front-end developer Adam Andreason: Android apps and games under Codeworks, original music under Songworks, with real support and privacy pages behind every release.',
   tagline: 'Independent software and songcraft from a solo studio.',
 } as const;
 
@@ -18,16 +18,18 @@ export const navItems: LinkItem[] = [
   { label: 'Songworks', href: '/songworks/' },
 ];
 
+// NOTE: homeHighlights and trustSignals are not currently rendered by any page.
+// Kept here (visitor-facing) in case they get wired into the home or Codeworks page later.
 export const homeHighlights = [
-  'Static-first launch built for Bluehost shared hosting.',
-  'Support, identity, and privacy pages designed for Play Store linking.',
-  'Structured data layer that can later move into Supabase without changing the site shape.',
+  'One studio behind both the apps and the songs — not a faceless publisher account.',
+  'Every app gets a real support page and a privacy policy you can actually find.',
+  'A working developer reads the inbox and answers it.',
 ] as const;
 
 export const trustSignals = [
-  'Solo studio with separate code and music venture tracks.',
-  'Public-facing support and policy pages available as stable HTML routes.',
-  'Current assets optimized at build time through Astro image handling.',
+  'Built and maintained by a professional front-end developer.',
+  'Support and privacy pages live at stable, linkable URLs for Play Store listings.',
+  'Software and music stay on separate tracks, under one honest name.',
 ] as const;
 
 export function toAbsoluteUrl(pathname: string) {
