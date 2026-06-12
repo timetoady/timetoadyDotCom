@@ -7,9 +7,9 @@ export const apps: AppEntry[] = [
     name: 'timetoady Android Apps',
     status: 'Support hub',
     shortDescription:
-      'Umbrella support and privacy entry for current and upcoming Android apps published under timetoady Codeworks.',
+      'Support and privacy for RomajiOverlay and any other timetoady Codeworks Android apps.',
     longDescription:
-      'This is the shared support landing point for timetoady Codeworks Android apps. Whichever app sent you here, this is where to reach the developer for help and find the privacy policy that applies. As more apps go live, each one gets its own page.',
+      'This is the support landing point for timetoady Codeworks Android apps, including RomajiOverlay — an accessibility overlay that adds romaji to Japanese text. Whichever app sent you here, this is where to reach the developer for help and find the privacy policy that applies. RomajiOverlay runs fully on-device and collects no personal data.',
     playStoreUrl: null,
     supportEmail: contact.supportEmail,
     privacyPolicyUrl: '/codeworks/privacy/',
@@ -24,7 +24,7 @@ export const apps: AppEntry[] = [
       {
         question: 'Where can I find the privacy policy?',
         answer:
-          'The main privacy policy for timetoady Codeworks is published at the site-level privacy page and should be linked from all relevant app listings.',
+          'The privacy policy is published at /codeworks/privacy/ and is linked from each app listing. RomajiOverlay processes text on-device only and stores no personal data.',
       },
       {
         question: 'Will future apps get dedicated pages?',

@@ -50,7 +50,7 @@ export const songworksFeaturedMedia: SongworksFeaturedMedia = {
   title: 'Our Fortress',
   youtubeId: 'ybot7wbZ5xk',
   summary:
-    'Featured from the timetoady YouTube channel as the current public listening anchor for Songworks.',
+    'The latest release — press play, then follow wherever you listen for what comes next.',
   publishedOn: 'March 25, 2026',
   fallbackUrl: 'https://www.youtube.com/watch?v=ybot7wbZ5xk',
 };

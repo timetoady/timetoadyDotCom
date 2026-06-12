@@ -1,7 +1,7 @@
 import type { ProjectEntry } from './schema';
 
 // Public, currently-live work. Private/in-progress apps are intentionally left out
-// until they ship — see the "Things I've actually shipped" section on the Codeworks page.
+// until they ship — see the "What I've shipped" section on the Codeworks page.
 export const projects: ProjectEntry[] = [
   {
     name: 'Tetris Flip',

@@ -8,6 +8,13 @@ interface Props {
 }
 
 const { currentPath = '/' } = Astro.props;
+
+const matchesPath = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath === href || currentPath.startsWith(href);
+const activeHref = navItems
+  .map((item) => item.href)
+  .filter(matchesPath)
+  .sort((a, b) => b.length - a.length)[0];
 ---
 
 <header class="site-header">
@@ -25,13 +32,14 @@ const { currentPath = '/' } = Astro.props;
       <nav class="topnav" aria-label="Primary">
         {
           navItems.map((item) => {
-            const isActive =
-              item.href === '/'
-                ? currentPath === '/'
-                : currentPath.startsWith(item.href);
+            const isActive = item.href === activeHref;
 
             return (
-              <a class:list={['topnav__link', { 'is-active': isActive }]} href={item.href}>
+              <a
+                class:list={['topnav__link', { 'is-active': isActive }]}
+                href={item.href}
+                aria-current={isActive ? 'page' : undefined}
+              >
                 {item.label}
               </a>
             );
@@ -61,13 +69,14 @@ const { currentPath = '/' } = Astro.props;
       <nav class="mobile-nav" aria-label="Mobile primary">
         {
           navItems.map((item) => {
-            const isActive =
-              item.href === '/'
-                ? currentPath === '/'
-                : currentPath.startsWith(item.href);
+            const isActive = item.href === activeHref;
 
             return (
-              <a class:list={['mobile-nav__link', { 'is-active': isActive }]} href={item.href}>
+              <a
+                class:list={['mobile-nav__link', { 'is-active': isActive }]}
+                href={item.href}
+                aria-current={isActive ? 'page' : undefined}
+              >
                 {item.label}
               </a>
             );

@@ -18,13 +18,13 @@ import {
 >
   <PageHero
     eyebrow="timetoady Songworks"
-    title="A release practice built from lyrics to finished distribution."
-    intro={songworksSummary.description}
+    title="Our Fortress — out now."
+    intro="Original, lyric-led songs from a one-person studio. Start with the latest single, then follow wherever you listen."
     theme="songworks"
   >
     <div class="button-row">
-      <a class="button button--primary" href={contact.youtubeChannelUrl} target="_blank" rel="noreferrer">
-        Visit YouTube channel
+      <a class="button button--primary" href={songworksFeaturedMedia.fallbackUrl} target="_blank" rel="noreferrer">
+        Listen now
       </a>
       <a class="button button--ghost" href="/">Back to timetoady</a>
     </div>
@@ -49,19 +49,14 @@ import {
       <div class="media-feature__copy">
         <article class="panel panel--spotlight panel--songworks">
           <p class="eyebrow">Featured listen</p>
-          <h2>Start with one song. The rest is a click away.</h2>
-          <p>
-            Rather than bury you in a wall of embeds, here's one track to start with — then a direct path out to the
-            full YouTube channel when you want more.
-          </p>
+          <h2>Our Fortress</h2>
           <p>{songworksFeaturedMedia.summary}</p>
           <div class="button-row">
-            <a class="button button--primary" href={songworksFeaturedMedia.fallbackUrl} target="_blank" rel="noreferrer">
-              Watch on YouTube
-            </a>
-            <a class="button button--ghost" href={contact.youtubeChannelUrl} target="_blank" rel="noreferrer">
-              Open full channel
-            </a>
+            {songworksChannels.map((channel) => (
+              <a class="button button--secondary" href={channel.href} target="_blank" rel="noreferrer">
+                {channel.name === 'YouTube' ? 'Watch on YouTube' : `Follow on ${channel.name}`}
+              </a>
+            ))}
           </div>
         </article>
         <article class="panel panel--quiet">
@@ -100,30 +95,7 @@ import {
   </section>
 
   <section class="section-block section-block--tight">
-    <div class="shell split-emphasis">
-      <article class="panel panel--quiet">
-        <p class="eyebrow">Channels</p>
-        <h2>Where Songworks shows up publicly.</h2>
-        <div class="channel-list">
-          {
-            songworksChannels.map((channel) => (
-              <div>
-                <h3>{channel.name}</h3>
-                <p>{channel.description}</p>
-                <p>
-                  <a
-                    href={channel.href}
-                    target={channel.href.startsWith('http') ? '_blank' : undefined}
-                    rel={channel.href.startsWith('http') ? 'noreferrer' : undefined}
-                  >
-                    Open {channel.name}
-                  </a>
-                </p>
-              </div>
-            ))
-          }
-        </div>
-      </article>
+    <div class="shell">
       <article class="panel panel--quiet">
         <p class="eyebrow">Contact</p>
         <h3>Collaborations and questions.</h3>
@@ -132,8 +104,8 @@ import {
             Want to collaborate, license a track, or just say something nice? Email
             <a href={`mailto:${contact.generalEmail}`}>{contact.generalEmail}</a>.
           </li>
-          <li>This is the overview for now; a full release catalog will land here as the songs add up.</li>
-          <li>Follow the YouTube channel to catch new releases as they drop.</li>
+          <li>A full release catalog will land here as the songs add up.</li>
+          <li>Follow on Spotify, YouTube, or iHeartRadio to catch new releases as they drop.</li>
         </ul>
       </article>
     </div>

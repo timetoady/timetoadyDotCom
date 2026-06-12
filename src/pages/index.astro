@@ -1,7 +1,6 @@
 ---
 import HomeHeroVisual from '../components/HomeHeroVisual.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { ventures } from '../data/ventures';
 import { homeHighlights } from '../data/site';
 ---
 
@@ -16,26 +15,24 @@ import { homeHighlights } from '../data/site';
         <p class="eyebrow">timetoady</p>
         <h1>Apps and songs from one independent studio.</h1>
         <p class="lede">
-          timetoady is where I build software and write music on my own terms. Codeworks is the home for my
-          Android apps and games — and the support and privacy pages behind them. Songworks is where the songs
-          live. Two crafts, one person, no committee.
+          I build Android apps and games under Codeworks, and write and release music under Songworks.
         </p>
         <div class="button-row hero-copy__actions">
           <a class="button button--primary" href="/codeworks/">Explore Codeworks</a>
-          <a class="button button--ghost" href="/songworks/">Visit Songworks</a>
+          <a class="button button--ghost" href="/songworks/">Listen to Our Fortress</a>
         </div>
-        <div class="hero-signals" aria-label="Launch signals">
+        <div class="hero-signals" aria-label="What timetoady is">
           <div class="hero-signal">
             <strong>Two ventures</strong>
             <span>Codeworks for software, Songworks for music</span>
           </div>
           <div class="hero-signal">
-            <strong>Real support</strong>
-            <span>a person reads the inbox and answers it</span>
+            <strong>What I build</strong>
+            <span>apps, games, and AI/MCP tooling</span>
           </div>
           <div class="hero-signal">
-            <strong>One builder</strong>
-            <span>front-end developer by trade, maker by habit</span>
+            <strong>One person</strong>
+            <span>I design, build, and ship it all</span>
           </div>
         </div>
       </div>
@@ -43,84 +40,37 @@ import { homeHighlights } from '../data/site';
     </div>
   </section>
 
-  <section class="section-block">
-    <div class="shell">
-      <div class="section-intro">
-        <p class="eyebrow">Two ventures</p>
-        <h2>One name, two things I make.</h2>
-        <p class="lede">
-          Codeworks covers the software: who built the app, how to get help, and where the privacy policy lives.
-          Songworks covers the music: how the songs are made and where to listen. Pick the side you came for.
-        </p>
-      </div>
-      <div class="venture-grid">
-        {
-          ventures.map((venture) => (
-            <article class:list={['card', `card--${venture.accent}`]}>
-              <p class="eyebrow">{venture.eyebrow}</p>
-              <h3>{venture.name}</h3>
-              <p>{venture.summary}</p>
-              <ul class="bullet-list">
-                {venture.bullets.map((bullet) => <li>{bullet}</li>)}
-              </ul>
-              <div class="button-row">
-                <a class="button button--secondary" href={venture.href}>
-                  {venture.ctaLabel}
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
   <section class="section-block section-block--compact">
     <div class="shell">
-      <div class="section-intro section-intro--split">
-        <div>
-          <p class="eyebrow">Where to next</p>
-          <h2>Most people are here for one of two reasons.</h2>
-        </div>
-        <p class="section-intro__side">
-          Either you installed one of my apps and need support or the privacy policy, or you followed the music
-          here. Both are one click away below.
-        </p>
-      </div>
-      <div class="split-emphasis">
+      <div class="venture-grid">
         <article class="panel panel--spotlight panel--codeworks">
           <p class="eyebrow">For app users</p>
-          <h3>Want to check the developer, get support, or read the privacy policy?</h3>
+          <h2>Support, developer info, and privacy.</h2>
           <p>
-            Codeworks is the place. It tells you who is behind the apps, gets your support email to a real person,
-            and keeps the privacy policy at a link you can actually find.
+            Codeworks tells you who built the app, where to get support, and where the privacy policy lives.
           </p>
           <div class="button-row">
             <a class="button button--primary" href="/codeworks/">Go to Codeworks</a>
-            <a class="button button--ghost" href="/codeworks/apps/">Browse app pages</a>
           </div>
-          <p class="kicker-line">The right first stop if you came from the Play Store.</p>
         </article>
-        <div class="split-emphasis__aside">
-          <article class="panel panel--quiet panel--songworks">
-            <p class="eyebrow">For listeners</p>
-            <h3>Here for the music? Songworks is right this way.</h3>
-            <p>
-              A featured track to start with and direct links out to the YouTube channel and streaming — the songs,
-              without the noise.
-            </p>
-            <div class="button-row">
-              <a class="button button--secondary" href="/songworks/">Open Songworks</a>
-            </div>
-          </article>
-          <article class="panel panel--quiet">
-            <p class="eyebrow">What you can count on</p>
-            <ul class="bullet-list">
-              {homeHighlights.map((highlight) => <li>{highlight}</li>)}
-            </ul>
-          </article>
-        </div>
+        <article class="panel panel--spotlight panel--songworks">
+          <p class="eyebrow">For listeners</p>
+          <h2>Hear the latest single, then follow.</h2>
+          <p>
+            Songworks is the music side. Start with "Our Fortress," then follow on Spotify, YouTube, or
+            iHeartRadio for what comes next.
+          </p>
+          <div class="button-row">
+            <a class="button button--secondary" href="/songworks/">Open Songworks</a>
+          </div>
+        </article>
       </div>
+      <article class="panel panel--quiet home-assurance">
+        <p class="eyebrow">What you can count on</p>
+        <ul class="bullet-list">
+          {homeHighlights.map((highlight) => <li>{highlight}</li>)}
+        </ul>
+      </article>
     </div>
   </section>
 </BaseLayout>

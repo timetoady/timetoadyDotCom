@@ -30,7 +30,7 @@ import headerImage from '../../assets/brand/TimeToadyHeaderLarge.png';
       <div class="fact-list">
         <div>
           <strong>Adam Andreason</strong>
-          <span>Front-end developer by trade, building apps and games under the timetoady name.</span>
+          <span>Software engineer with front-end roots — building apps, games, and AI tooling (MCP servers, agent workflows, Android apps) under the timetoady name.</span>
         </div>
         <div>
           <strong>A real, solo operation</strong>
@@ -44,19 +44,57 @@ import headerImage from '../../assets/brand/TimeToadyHeaderLarge.png';
     </div>
   </PageHero>
 
+  <section class="section-block section-block--tight">
+    <div class="shell">
+      <div class="section-intro section-intro--split">
+        <div>
+          <p class="eyebrow">Public work</p>
+          <h2>What I've shipped.</h2>
+        </div>
+        <p class="section-intro__side">
+          Public projects — code and downloads, all live now: a game, an Android accessibility tool, and the
+          AI/MCP developer tooling I build with.
+        </p>
+      </div>
+      <div class="card-grid">
+        {
+          projects.map((project) => (
+            <article class:list={['card', project.accent && `card--${project.accent}`]}>
+              <p class="eyebrow">{project.category}</p>
+              <h3>{project.name}</h3>
+              <p>{project.description}</p>
+              <p class="muted">{project.tech.join(' · ')}</p>
+              <div class="button-row">
+                <a
+                  class="button button--secondary"
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${project.name} on GitHub`}
+                >
+                  {project.hrefLabel}
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <section class="section-block">
     <div class="shell">
       <div class="feature-split">
         <div class="banner-frame banner-frame--wide">
-          <Image src={headerImage} alt="timetoady Codeworks banner artwork" />
+          <Image src={headerImage} alt="" />
         </div>
         <div class="stack">
           <article class="panel panel--spotlight panel--codeworks">
             <p class="eyebrow">What Codeworks is for</p>
             <h2>If you installed one of my apps, start here.</h2>
             <p>
-              This is where you confirm who published the app on your phone, send a support request that an actual
-              human reads, and find the privacy policy that applies. Plainly linked, easy to come back to.
+              This is where you confirm who published the app on your phone, get support, and find the privacy
+              policy that applies. Plainly linked, easy to come back to.
             </p>
           </article>
           <div class="proof-points">
@@ -78,44 +116,11 @@ import headerImage from '../../assets/brand/TimeToadyHeaderLarge.png';
     <div class="shell">
       <div class="section-intro section-intro--split">
         <div>
-          <p class="eyebrow">Public work</p>
-          <h2>Things I've actually shipped.</h2>
-        </div>
-        <p class="section-intro__side">
-          Some apps aren't public yet — but these are. Open code, real downloads, nothing behind a waiting list.
-          A game, an Android accessibility tool, and the AI tooling I build to make the rest of this faster.
-        </p>
-      </div>
-      <div class="card-grid">
-        {
-          projects.map((project) => (
-            <article class:list={['card', project.accent && `card--${project.accent}`]}>
-              <p class="eyebrow">{project.category}</p>
-              <h3>{project.name}</h3>
-              <p>{project.description}</p>
-              <p class="muted">{project.tech.join(' · ')}</p>
-              <div class="button-row">
-                <a class="button button--secondary" href={project.href} target="_blank" rel="noreferrer">
-                  {project.hrefLabel}
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section-block section-block--tight">
-    <div class="shell">
-      <div class="section-intro section-intro--split">
-        <div>
           <p class="eyebrow">App support</p>
           <h2>One shared Android support hub to start.</h2>
         </div>
         <p class="section-intro__side">
-          Rather than pad out a fake catalog, there's one shared Android support hub for now. As apps go live,
-          each gets its own page here.
+          One shared Android support hub covering RomajiOverlay for now. As apps go live, each gets its own page here.
         </p>
       </div>
       <div class="directory-layout">
@@ -139,13 +144,6 @@ import headerImage from '../../assets/brand/TimeToadyHeaderLarge.png';
                 <dd>Dedicated app pages can be added when individual public listings go live.</dd>
               </div>
             </dl>
-          </article>
-          <article class="panel panel--quiet">
-            <p class="eyebrow">Linking guidance</p>
-            <p>
-              Store listings should point either to this shared app directory or to a dedicated app page once a
-              listing needs more specific FAQs and release notes.
-            </p>
           </article>
         </aside>
       </div>
