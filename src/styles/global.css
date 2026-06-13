@@ -9,6 +9,9 @@
   --line-soft: rgba(255, 255, 255, 0.08);
   --codeworks-accent: #44d6ff;
   --songworks-accent: #ff8a6c;
+  /* Darkened accents for text/UI on light backgrounds (the bright hues fail AA there). */
+  --codeworks-accent-ink: #0b6c87;
+  --songworks-accent-ink: #9a3d27;
   --grid-line: rgba(68, 214, 255, 0.12);
 }
 
@@ -16,10 +19,23 @@ html {
   scroll-behavior: smooth;
   color-scheme: light;
   --section-accent: var(--codeworks-accent);
+  /* Accessible accent used for text and state-bearing UI; defaults to the bright
+     accent (fine on dark) and is darkened for light theme below. */
+  --section-accent-text: var(--section-accent);
+  /* Header height fallback for the mobile drawer; JS overrides with the live value on open. */
+  --header-height: 5.2rem;
 }
 
 html.theme-songworks {
   --section-accent: var(--songworks-accent);
+}
+
+html[data-theme='light'] {
+  --section-accent-text: var(--codeworks-accent-ink);
+}
+
+html[data-theme='light'].theme-songworks {
+  --section-accent-text: var(--songworks-accent-ink);
 }
 
 html[data-theme='light'] {
@@ -97,10 +113,65 @@ iframe {
   max-width: 100%;
 }
 
+/* Let images keep their intrinsic ratio so CSS aspect-ratio is honored instead of
+   the intrinsic height attribute Astro emits. Scoped to img so iframe embeds keep
+   their explicit height. */
+img {
+  height: auto;
+}
+
 a {
   color: inherit;
   text-underline-offset: 0.18em;
   text-decoration-color: color-mix(in srgb, var(--section-accent) 44%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -3.5rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.6rem 0.95rem;
+  border-radius: var(--radius-control);
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  text-decoration: none;
+  transition: top 160ms ease;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.footer-tagline {
+  margin: 0;
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.home-assurance {
+  margin-top: 1.25rem;
 }
 
 button,
@@ -271,7 +342,7 @@ main {
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background: var(--section-accent);
+  background: var(--section-accent-text);
   box-shadow: 0 0 0 0.28rem color-mix(in srgb, var(--section-accent) 18%, transparent);
 }
 
@@ -304,9 +375,22 @@ html[data-theme='dark'] .theme-toggle__glyph::after {
   border-radius: 999px;
 }
 
+/* Overlay drawer: viewport-fixed just below the header so it appears in place at
+   any scroll position and never pushes page content down. --header-height is set
+   in JS from the live header height (it varies by breakpoint). */
 .site-mobile-menu {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  z-index: 29;
+  max-height: calc(100vh - var(--header-height));
+  overflow-y: auto;
   border-top: 1px solid var(--line-subtle);
-  background: color-mix(in srgb, var(--header-bg) 96%, transparent);
+  border-bottom: 1px solid var(--line-subtle);
+  background: var(--header-bg);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-md);
 }
 
 .site-mobile-menu[hidden] {
@@ -317,6 +401,40 @@ html[data-theme='dark'] .theme-toggle__glyph::after {
   display: grid;
   gap: 1rem;
   padding: 1rem 0 1.15rem;
+}
+
+/* Scrim sits below the drawer but above page content; clicking it closes the menu. */
+.site-mobile-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 28;
+  background: rgba(5, 10, 18, 0.42);
+  border: 0;
+  cursor: pointer;
+}
+
+.site-mobile-scrim[hidden] {
+  display: none !important;
+}
+
+/* Lock background scroll while the drawer is open. */
+html.is-menu-open {
+  overflow: hidden;
+}
+
+/* overflow:hidden removes the scroll container, which un-sticks position:sticky and
+   would scroll the header out of view. Pin it to the viewport, and pad the body by the
+   same height so content underneath doesn't shift when the header leaves normal flow. */
+html.is-menu-open .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+html.is-menu-open body {
+  overflow: hidden;
+  padding-top: var(--header-height);
 }
 
 .mobile-nav {
@@ -336,8 +454,8 @@ html[data-theme='dark'] .theme-toggle__glyph::after {
 }
 
 .mobile-nav__link.is-active {
-  border-color: color-mix(in srgb, var(--section-accent) 48%, var(--line));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--section-accent) 22%, transparent);
+  border-color: color-mix(in srgb, var(--section-accent-text) 48%, var(--line));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--section-accent-text) 22%, transparent);
 }
 
 .theme-toggle--mobile {
@@ -429,7 +547,7 @@ p {
 .pill,
 .section-label {
   margin: 0 0 0.45rem;
-  color: var(--section-accent);
+  color: var(--section-accent-text);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -511,7 +629,9 @@ p {
 }
 
 .button__meta {
-  color: var(--muted);
+  /* Derive from the button's own text colour so it stays legible on any button
+     variant (the --muted gray failed contrast on the bright primary buttons). */
+  color: color-mix(in srgb, currentColor 78%, transparent);
   font-size: 0.88rem;
   font-weight: 500;
 }
@@ -1012,9 +1132,18 @@ p {
   object-fit: cover;
 }
 
+/* On desktop the wide banner shares a stretched row with the taller copy column,
+   so it fills that height (cover) instead of leaving a gap below a 16/9 image.
+   When stacked on mobile the frame gets an explicit 16/9 box (see media query). */
+.banner-frame--wide {
+  display: flex;
+}
+
 .banner-frame--wide img {
+  width: 100%;
+  height: 100%;
   max-height: none;
-  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .stack {
@@ -1024,11 +1153,6 @@ p {
 
 .split-emphasis {
   align-items: stretch;
-}
-
-.split-emphasis__aside {
-  display: grid;
-  gap: 1rem;
 }
 
 .feature-split {
@@ -1096,6 +1220,25 @@ p {
 .media-feature__copy {
   display: grid;
   gap: 1rem;
+}
+
+/* Featured-listen channel buttons: lead with the full-width "Watch" action, then
+   pair the two "Follow" buttons evenly — avoids a ragged 2+1 flex-wrap on desktop. */
+.channel-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.45rem;
+}
+
+.channel-actions > :first-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 640px) {
+  .channel-actions {
+    grid-template-columns: 1fr;
+  }
 }
 
 .step-list,
@@ -1257,24 +1400,11 @@ p {
   font-weight: 700;
 }
 
-.channel-list {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.channel-list a {
-  font-weight: 600;
-}
-
 .home-quick-paths {
   display: grid;
   gap: 0.9rem;
 }
 
-.kicker-line {
-  color: var(--muted);
-  font-size: 0.95rem;
-}
 
 @keyframes heroPulse {
   0%,
@@ -1306,11 +1436,6 @@ p {
   .hero-copy h1 {
     max-width: 12ch;
   }
-
-  .hero-tech__legend,
-  .proof-points {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 899px) {
@@ -1332,6 +1457,8 @@ p {
   .policy-layout,
   .media-feature,
   .support-flow,
+  .hero-tech__legend,
+  .proof-points,
   .page-hero__grid--split {
     grid-template-columns: 1fr;
   }
@@ -1349,13 +1476,24 @@ p {
     padding-top: 4.5rem;
   }
 
+  /* Mobile/stacked: simplify the hero visual to just the brand mark. The chips and
+     legend are hidden — the hero-signal cards above already state Code/Songs/Maker. */
   .hero-tech__frame {
-    min-height: 24rem;
+    min-height: 18rem;
   }
 
-  .hero-tech__chip--right {
-    top: auto;
-    bottom: 8.6rem;
+  .hero-tech__chip,
+  .hero-tech__legend {
+    display: none;
+  }
+
+  .hero-tech__core {
+    inset: 1.5rem;
+  }
+
+  /* Stacked: give the wide banner an explicit 16/9 box (no stretched sibling to fill). */
+  .banner-frame--wide {
+    aspect-ratio: 16 / 9;
   }
 
   .policy-nav {
@@ -1416,31 +1554,26 @@ p {
   }
 
   .hero-tech__frame {
-    min-height: 21rem;
-  }
-
-  .hero-tech__chip {
-    font-size: 0.66rem;
-  }
-
-  .hero-tech__core {
-    inset: 4.5rem 1.35rem 8rem;
-  }
-
-  .hero-tech__chip--top,
-  .hero-tech__chip--left,
-  .hero-tech__chip--right,
-  .hero-tech__legend {
-    left: 1rem;
-    right: 1rem;
-  }
-
-  .hero-tech__chip--right {
-    justify-self: start;
+    min-height: 16rem;
   }
 
   .section-block,
   .content-block {
     padding-bottom: 2.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

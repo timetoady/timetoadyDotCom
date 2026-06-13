@@ -1,5 +1,5 @@
 export const contact = {
-  location: 'Denver, Colorado',
+  location: 'Springville, Utah',
   timezone: 'America/Denver',
   generalEmail: 'hello@timetoady.com',
   supportEmail: 'support@timetoady.com',

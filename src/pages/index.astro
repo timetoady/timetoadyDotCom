@@ -1,7 +1,7 @@
 ---
 import HomeHeroVisual from '../components/HomeHeroVisual.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { ventures } from '../data/ventures';
+import { homeHighlights } from '../data/site';
 ---
 
 <BaseLayout
@@ -13,27 +13,26 @@ import { ventures } from '../data/ventures';
     <div class="shell hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">timetoady</p>
-        <h1>Apps and songs, one independent studio.</h1>
+        <h1>Apps and songs from one independent studio.</h1>
         <p class="lede">
-          Codeworks gives Play Store visitors a stable support destination. Songworks gives the music side a
-          cleaner public front door. The shell is built to feel current, maintained, and technically credible.
+          I build Android apps and games under Codeworks, and write and release music under Songworks.
         </p>
         <div class="button-row hero-copy__actions">
-          <a class="button button--primary" href="/codeworks/">Explore Codeworks</a>
-          <a class="button button--ghost" href="/songworks/">Visit Songworks</a>
+          <a class="button button--secondary" href="/codeworks/">Explore Codeworks</a>
+          <a class="button button--secondary" href="/songworks/">Listen to Our Fortress</a>
         </div>
-        <div class="hero-signals" aria-label="Launch signals">
+        <div class="hero-signals" aria-label="What timetoady is">
           <div class="hero-signal">
-            <strong>{ventures.length} tracks</strong>
-            <span>codeworks and Songworks under one shell</span>
+            <strong>Two ventures</strong>
+            <span>Codeworks for software, Songworks for music</span>
           </div>
           <div class="hero-signal">
-            <strong>Support-first</strong>
-            <span>public support and privacy routes stay easy to trust</span>
+            <strong>What I build</strong>
+            <span>apps, games, and AI/MCP tooling</span>
           </div>
           <div class="hero-signal">
-            <strong>System-aware</strong>
-            <span>light and dark themes with manual override</span>
+            <strong>One person</strong>
+            <span>I design, build, and ship it all</span>
           </div>
         </div>
       </div>
@@ -41,86 +40,37 @@ import { ventures } from '../data/ventures';
     </div>
   </section>
 
-  <section class="section-block">
-    <div class="shell">
-      <div class="section-intro">
-        <p class="eyebrow">Venture split</p>
-        <h2>Shared shell, separate public roles.</h2>
-        <p class="lede">
-          Codeworks handles software identity, support, and policy coverage. Songworks introduces the music
-          process and points listeners toward release channels without overbuilding the site.
-        </p>
-      </div>
-      <div class="venture-grid">
-        {
-          ventures.map((venture) => (
-            <article class:list={['card', `card--${venture.accent}`]}>
-              <p class="eyebrow">{venture.eyebrow}</p>
-              <h3>{venture.name}</h3>
-              <p>{venture.summary}</p>
-              <ul class="bullet-list">
-                {venture.bullets.map((bullet) => <li>{bullet}</li>)}
-              </ul>
-              <div class="button-row">
-                <a class="button button--secondary" href={venture.href}>
-                  {venture.ctaLabel}
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
   <section class="section-block section-block--compact">
     <div class="shell">
-      <div class="section-intro section-intro--split">
-        <div>
-          <p class="eyebrow">Where to go next</p>
-          <h2>Most visitors should branch from here in one step.</h2>
-        </div>
-        <p class="section-intro__side">
-          The homepage should stay short: establish the studio, split the ventures cleanly, and point people toward
-          the next page that answers their actual question.
-        </p>
-      </div>
-      <div class="split-emphasis">
+      <div class="venture-grid">
         <article class="panel panel--spotlight panel--codeworks">
           <p class="eyebrow">For app users</p>
-          <h3>Need to verify the developer, find support, or check privacy?</h3>
+          <h2>Support, developer info, and privacy.</h2>
           <p>
-            Codeworks is the primary path for Play Store traffic. It explains who is behind the apps, where support
-            requests go, and where the public privacy policy lives.
+            Codeworks tells you who built the app, where to get support, and where the privacy policy lives.
           </p>
           <div class="button-row">
-            <a class="button button--primary" href="/codeworks/">Go to Codeworks</a>
-            <a class="button button--ghost" href="/codeworks/apps/">Browse app pages</a>
+            <a class="button button--secondary" href="/codeworks/apps/android-apps/">Get app support</a>
           </div>
-          <p class="kicker-line">Best first stop for Play Store visitors and anyone checking app legitimacy.</p>
         </article>
-        <div class="split-emphasis__aside">
-          <article class="panel panel--quiet panel--songworks">
-            <p class="eyebrow">For listeners</p>
-            <h3>Songworks stays visible without taking over the conversion path.</h3>
-            <p>
-              The music side gets a clear route, featured media, and public channel links, while staying secondary to
-              the Codeworks support mission on the home screen.
-            </p>
-            <div class="button-row">
-              <a class="button button--secondary" href="/songworks/">Open Songworks</a>
-            </div>
-          </article>
-          <article class="panel panel--quiet">
-            <p class="eyebrow">Why this shape works</p>
-            <ul class="bullet-list">
-              <li>People arriving from apps can confirm identity and find support quickly.</li>
-              <li>People arriving from music can reach a curated media and channel page without noise.</li>
-              <li>The domain still reads as one studio instead of two unrelated microsites.</li>
-            </ul>
-          </article>
-        </div>
+        <article class="panel panel--spotlight panel--songworks">
+          <p class="eyebrow">For listeners</p>
+          <h2>Hear the latest single, then follow.</h2>
+          <p>
+            Songworks is the music side. Start with "Our Fortress," then follow on Spotify, YouTube, or
+            iHeartRadio for what comes next.
+          </p>
+          <div class="button-row">
+            <a class="button button--secondary" href="/songworks/">Listen on Songworks</a>
+          </div>
+        </article>
       </div>
+      <article class="panel panel--quiet home-assurance">
+        <p class="eyebrow">What you can count on</p>
+        <ul class="bullet-list">
+          {homeHighlights.map((highlight) => <li>{highlight}</li>)}
+        </ul>
+      </article>
     </div>
   </section>
 </BaseLayout>

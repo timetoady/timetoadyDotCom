@@ -5,29 +5,22 @@ export const siteConfig = {
   domain: 'https://timetoady.com',
   title: 'timetoady | Codeworks and Songworks',
   description:
-    'Independent software and song creation from timetoady, including Play Store-facing developer support pages and a growing music release project.',
+    'timetoady is the solo studio of Adam Andreason — a software engineer building Android apps, games, and AI tooling under Codeworks, with original music under Songworks.',
   tagline: 'Independent software and songcraft from a solo studio.',
 } as const;
 
 export const navItems: LinkItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Codeworks', href: '/codeworks/' },
-  { label: 'Apps', href: '/codeworks/apps/' },
-  { label: 'Support', href: '/codeworks/support/' },
-  { label: 'Privacy', href: '/codeworks/privacy/' },
   { label: 'Songworks', href: '/songworks/' },
+  { label: 'Support', href: '/codeworks/support/' },
 ];
 
+// homeHighlights renders in the "What you can count on" panel on the home page.
 export const homeHighlights = [
-  'Static-first launch built for Bluehost shared hosting.',
-  'Support, identity, and privacy pages designed for Play Store linking.',
-  'Structured data layer that can later move into Supabase without changing the site shape.',
-] as const;
-
-export const trustSignals = [
-  'Solo studio with separate code and music venture tracks.',
-  'Public-facing support and policy pages available as stable HTML routes.',
-  'Current assets optimized at build time through Astro image handling.',
+  'One studio behind both the apps and the songs — not a faceless publisher account.',
+  'Every app gets a real support page and a privacy policy you can actually find.',
+  'A working developer reads the inbox and answers it.',
 ] as const;
 
 export function toAbsoluteUrl(pathname: string) {

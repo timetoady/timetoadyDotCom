@@ -6,7 +6,7 @@ export const songworksSummary = {
   summary:
     'A songwriting and release practice built around original lyrics, AI-assisted composition, mastering, and consistent public publishing.',
   description:
-    'Songworks turns lyric ideas into finished releases through a repeatable solo workflow. The initial site focus is clarity: what the project is, how songs are made, and where listeners can follow the output.',
+    'Songworks turns a lyric into a finished release through one repeatable solo workflow — write, compose, master, publish. Here is what the project is, how the songs get made, and where to follow along.',
 };
 
 export const songworksProcess: SongworksProcessStep[] = [
@@ -24,25 +24,25 @@ export const songworksProcess: SongworksProcessStep[] = [
   },
   {
     title: 'Release',
-    description: 'Publish through DistroKid and pair the release with YouTube presence for discoverability.',
+    description: 'Distribute out to Spotify, iHeartRadio, and the other streaming platforms, then anchor each release with a YouTube video.',
   },
 ];
 
 export const songworksChannels: SongworksChannel[] = [
   {
-    name: 'YouTube channel',
+    name: 'YouTube',
     href: contact.youtubeChannelUrl,
-    description: 'Primary public channel for videos and listening links.',
+    description: 'The primary public channel — videos and listening links, with new releases as they land.',
   },
   {
-    name: 'DistroKid distribution',
-    href: 'https://distrokid.com/',
-    description: 'Distribution partner used to move finished releases onto streaming platforms.',
+    name: 'Spotify',
+    href: 'https://open.spotify.com/artist/3GJseKRcXOYA9EFTcDcEXt',
+    description: 'Stream the releases on Spotify, and follow the artist to catch the next one.',
   },
   {
-    name: 'Future release catalog',
-    href: '/songworks/',
-    description: 'This site will eventually grow into a home base for release pages and listening paths.',
+    name: 'iHeartRadio',
+    href: 'https://www.iheart.com/artist/timetoady-50145098/',
+    description: 'Listen to the catalog on iHeartRadio.',
   },
 ];
 
@@ -50,7 +50,7 @@ export const songworksFeaturedMedia: SongworksFeaturedMedia = {
   title: 'Our Fortress',
   youtubeId: 'ybot7wbZ5xk',
   summary:
-    'Featured from the timetoady YouTube channel as the current public listening anchor for Songworks.',
+    'The latest release — press play, then follow wherever you listen for what comes next.',
   publishedOn: 'March 25, 2026',
   fallbackUrl: 'https://www.youtube.com/watch?v=ybot7wbZ5xk',
 };
