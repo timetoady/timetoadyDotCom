@@ -64,32 +64,33 @@ const activeHref = navItems
       </button>
     </div>
   </div>
-  <div class="site-mobile-menu" id="site-mobile-menu" data-mobile-menu hidden>
-    <div class="shell site-mobile-menu__panel">
-      <nav class="mobile-nav" aria-label="Mobile primary">
-        {
-          navItems.map((item) => {
-            const isActive = item.href === activeHref;
-
-            return (
-              <a
-                class:list={['mobile-nav__link', { 'is-active': isActive }]}
-                href={item.href}
-                aria-current={isActive ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
-            );
-          })
-        }
-      </nav>
-      <button class="theme-toggle theme-toggle--mobile" type="button" data-theme-toggle aria-label="Toggle theme">
-        <span class="theme-toggle__glyph" aria-hidden="true"></span>
-        <span class="theme-toggle__label" data-theme-label>theme</span>
-      </button>
-    </div>
-  </div>
 </header>
+<div class="site-mobile-scrim" data-mobile-scrim hidden></div>
+<div class="site-mobile-menu" id="site-mobile-menu" data-mobile-menu hidden>
+  <div class="shell site-mobile-menu__panel">
+    <nav class="mobile-nav" aria-label="Mobile primary">
+      {
+        navItems.map((item) => {
+          const isActive = item.href === activeHref;
+
+          return (
+            <a
+              class:list={['mobile-nav__link', { 'is-active': isActive }]}
+              href={item.href}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+    <button class="theme-toggle theme-toggle--mobile" type="button" data-theme-toggle aria-label="Toggle theme">
+      <span class="theme-toggle__glyph" aria-hidden="true"></span>
+      <span class="theme-toggle__label" data-theme-label>theme</span>
+    </button>
+  </div>
+</div>
 
 <script is:inline>
   (() => {
@@ -98,6 +99,8 @@ const activeHref = navItems
     const themeButtons = Array.from(document.querySelectorAll('[data-theme-toggle]'));
     const menuButton = document.querySelector('[data-menu-toggle]');
     const mobileMenu = document.querySelector('[data-mobile-menu]');
+    const mobileScrim = document.querySelector('[data-mobile-scrim]');
+    const siteHeader = document.querySelector('.site-header');
     const themeColorMap = { light: '#edf2f8', dark: '#071019' };
     const mobileBreakpoint = window.matchMedia('(max-width: 899px)');
 
@@ -123,18 +126,33 @@ const activeHref = navItems
 
     const closeMenu = () => {
       if (!(menuButton instanceof HTMLButtonElement) || !(mobileMenu instanceof HTMLElement)) return;
+      const wasOpen = menuButton.getAttribute('aria-expanded') === 'true';
       menuButton.setAttribute('aria-expanded', 'false');
       menuButton.setAttribute('aria-label', 'Open navigation menu');
       mobileMenu.hidden = true;
       mobileMenu.dataset.open = 'false';
+      if (mobileScrim instanceof HTMLElement) mobileScrim.hidden = true;
+      document.documentElement.classList.remove('is-menu-open');
+      if (wasOpen && document.activeElement instanceof HTMLElement && mobileMenu.contains(document.activeElement)) {
+        menuButton.focus();
+      }
     };
 
     const openMenu = () => {
       if (!(menuButton instanceof HTMLButtonElement) || !(mobileMenu instanceof HTMLElement)) return;
       menuButton.setAttribute('aria-expanded', 'true');
       menuButton.setAttribute('aria-label', 'Close navigation menu');
+      // Anchor the fixed drawer just below the actual header height (varies by breakpoint).
+      if (siteHeader instanceof HTMLElement) {
+        document.documentElement.style.setProperty('--header-height', `${siteHeader.offsetHeight}px`);
+      }
       mobileMenu.hidden = false;
       mobileMenu.dataset.open = 'true';
+      if (mobileScrim instanceof HTMLElement) mobileScrim.hidden = false;
+      document.documentElement.classList.add('is-menu-open');
+      // preventScroll: the drawer is viewport-fixed, so focusing a link must not jump the page.
+      const firstLink = mobileMenu.querySelector('a');
+      if (firstLink instanceof HTMLElement) firstLink.focus({ preventScroll: true });
     };
 
     themeButtons.forEach((button) => {
@@ -156,6 +174,10 @@ const activeHref = navItems
       mobileMenu.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', closeMenu);
       });
+
+      if (mobileScrim instanceof HTMLElement) {
+        mobileScrim.addEventListener('click', closeMenu);
+      }
     }
 
     document.addEventListener('keydown', (event) => {

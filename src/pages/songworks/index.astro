@@ -51,7 +51,7 @@ import {
           <p class="eyebrow">Featured listen</p>
           <h2>Our Fortress</h2>
           <p>{songworksFeaturedMedia.summary}</p>
-          <div class="button-row">
+          <div class="channel-actions">
             {songworksChannels.map((channel) => (
               <a class="button button--secondary" href={channel.href} target="_blank" rel="noreferrer">
                 {channel.name === 'YouTube' ? 'Watch on YouTube' : `Follow on ${channel.name}`}

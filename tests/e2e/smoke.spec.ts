@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test';
 
 const routes = [
-  { path: '/', heading: /Apps and songs, one independent studio/i },
-  { path: '/codeworks/', heading: /Developer identity, support routes/i },
+  { path: '/', heading: /Apps and songs from one independent studio/i },
+  { path: '/codeworks/', heading: /Installed one of my apps/i },
   { path: '/codeworks/apps/', heading: /Practical support entries/i },
   { path: '/codeworks/apps/android-apps/', heading: /timetoady Android Apps/i },
   { path: '/codeworks/support/', heading: /Email-first support/i },
   { path: '/codeworks/privacy/', heading: /Privacy information for timetoady Codeworks/i },
-  { path: '/songworks/', heading: /A release practice built from lyrics to finished distribution/i },
+  { path: '/songworks/', heading: /Our Fortress/i },
 ];
 
 test('core routes render expected page headings', async ({ page }) => {
@@ -22,7 +22,7 @@ test('homepage exposes primary navigation and venture links', async ({ page }) =
 
   await expect(page.getByText('timetoady').first()).toBeVisible();
   await expect(page.getByRole('link', { name: 'Explore Codeworks' }).first()).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Visit Songworks' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Listen on Songworks' }).first()).toBeVisible();
 });
 
 test('android app support page exposes support and privacy actions', async ({ page }) => {

@@ -29,3 +29,6 @@ pnpm-debug.log*
 
 # local scaffolding scratch dir
 __astro_tmp__/
+
+# throwaway UX-review capture tooling + screenshots (not part of the test suite)
+tests/e2e/ux-review/
