@@ -12,9 +12,9 @@
 - Senior-dev pass: **complete** — risk-hardening + DRY sweep (see below)
 - Independent critique and persona review: **complete** — fresh reviewer, verdict **PASS** (overall 8/10); see Quality-Gate Score History + Critique findings
 - Quality-gate loop: **complete** — iteration 2 closed N1 + N2; N3/N4 accepted to backlog
-- PR creation: **next**
-- Review handling: not started
-- Closeout: not started
+- PR creation: **complete** — [PR #1](https://github.com/timetoady/timetoadyDotCom/pull/1)
+- Review handling: **skipped** — no reviewer automation configured; developer opted to skip formal review
+- Closeout: **complete** — see Closeout section
 
 ## Summary
 
@@ -154,12 +154,12 @@ Scored 1-10 by an agent that did not produce the work. Initial scores are the di
 - [x] P2 backlog documented in `docs/working/timetoady-ux-backlog.md` (A4 folded into U2)
 - [x] Add/extend Playwright regression checks — `tests/e2e/ux-regression.spec.ts` (U1 banner ratio, U2 menu no-shift, U3 chips hidden); stale smoke assertions corrected
 - [x] Re-run the capture script and confirm measurements meet acceptance criteria
-- [ ] Run senior-dev pass (risk-hardening + DRY sweep)
-- [ ] Run independent critique + persona re-review
-- [ ] Clear the quality bar via the quality-gate loop
-- [ ] Create PR(s)
-- [ ] Handle review comments
-- [ ] Post closeout summary with PR links and QA notes
+- [x] Run senior-dev pass (risk-hardening + DRY sweep)
+- [x] Run independent critique + persona re-review (verdict PASS, 8/10)
+- [x] Clear the quality bar via the quality-gate loop (iteration 2: N1 + N2)
+- [x] Create PR(s) — [PR #1](https://github.com/timetoady/timetoadyDotCom/pull/1)
+- [~] Handle review comments — skipped (no reviewer automation; developer opted out)
+- [x] Post closeout summary with PR links and QA notes
 
 ## Review wave 1 (developer feedback on MVP)
 
@@ -226,12 +226,11 @@ After reviewing the MVP the developer flagged five items; all fixed and re-verif
 
 ## PR and Review Tracking
 
-- Repo and branch coverage: `timetoadyDotCom` — current branch `copy/visitor-facing-rewrite` (confirm
-  target branch at PR time).
-- PR links: _TBD_
-- Reviewer automation status: _TBD (check repo for Copilot/CodeRabbit)_
-- Review status: _TBD_
-- Closeout status: _TBD_
+- Repo and branch coverage: `timetoadyDotCom`, `copy/visitor-facing-rewrite` → `main`.
+- PR link: **[#1 — Visitor-facing UX: responsive, accessibility, and mobile-nav fixes](https://github.com/timetoady/timetoadyDotCom/pull/1)** (commit `ac0e94f`; 24 files, +1052/−344 — includes the 3 prior branch commits).
+- Reviewer automation status: **none configured** (no `.github/` workflows, no CodeRabbit/Copilot config); no auto-reviewers requested. Add human/Copilot reviewers manually if desired.
+- Review status: **skipped** — no automation configured; developer opted out of a formal review pass.
+- Closeout status: **complete** (see Closeout).
 
 ## Critique findings (independent reviewer, post-MVP)
 
@@ -271,3 +270,29 @@ all severity-5 issues resolved; no AA contrast/motion blocker (contrast pixel-sa
 - Capture script: `tests/e2e/ux-review/capture.mjs` (throwaway / not part of the committed suite).
 - Full per-persona critiques (UX expert, accessibility specialist, responsive/QA, first-time visitor)
   were produced during discovery and are summarized in the issue register above.
+
+## Closeout
+
+### Delivery Summary
+
+**PR ready for review / merge:**
+- **[PR #1 — Visitor-facing UX: responsive, accessibility, and mobile-nav fixes](https://github.com/timetoady/timetoadyDotCom/pull/1)** (`copy/visitor-facing-rewrite` → `main`, commit `ac0e94f`)
+  - Mobile-menu overlay (no content shift / no scroll-jump / header stays pinned), /codeworks banner fix (no 2304px slab), hero-tech simplified on mobile, WCAG-AA light-theme contrast, reduced-motion, plus IA/CTA/footer polish. Diff is 24 files (+1052/−344) as it also carries the branch's 3 prior visitor-facing commits.
+
+**Validation completed:**
+- All 11 acceptance criteria (U1–U4, A1–A3, X1, X2, R1, D1) verified **met** with measured evidence; the three reported defects fixed and re-measured (menu shift 347px→0, banner 2304px→16/9, chip overlap →0).
+- Quality-gate **final scores:** Correctness 9 · Scope-fit 9 · Simplicity/DRY 8 · Test coverage 8 · UX/DX 7 · Accessibility 9 · Docs clarity 8 → **overall 8/10, PASS.**
+- Accepted residual gaps → backlog (`timetoady-ux-backlog.md`): **N3** (flat all-secondary CTAs), **N4** (cross-page CTA style), plus P2 items U5/U6/X3/X4/A5/U8/C1.
+- Automated checks: `npx playwright test` → **31 passed, 8 skipped** (self-contained via `webServer`). Regression coverage: `tests/e2e/ux-regression.spec.ts`.
+- Review feedback: formal review **skipped** (no reviewer automation configured; developer opted out).
+
+### QA Comment (cut-down smoke test)
+
+1. **Mobile (≤412), scrolled down:** open the hamburger → header stays pinned at top, page doesn't jump, hero doesn't shift; scrim-tap / Escape / link / outside-click all close it.
+2. **/codeworks:** the feature banner is a normal landscape image (not a tall empty panel); "Get app support" reaches the RomajiOverlay hub in one tap.
+3. **Light theme (toggle top-right):** eyebrow/label text (e.g. "FOR APP USERS") is legibly dark, not pale cyan.
+4. **OS "reduce motion" on:** the hero rings/scanline are static.
+5. **Inner page footer (e.g. /songworks):** exposes Codeworks · Songworks · Support · Privacy · email.
+6. No horizontal scroll 320–1440; no dark-theme regressions.
+
+Deeper validation: see the issue register + Critique findings above; reproduce measurements with the (gitignored) `tests/e2e/ux-review/` probes against a server on :4321.
