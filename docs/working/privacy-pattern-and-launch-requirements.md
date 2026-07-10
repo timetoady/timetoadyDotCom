@@ -113,11 +113,11 @@ Dimensions scored 1-10. **Passing bar: every dimension >= 7 and overall >= 8.**
 
 ## PR and Review Tracking
 
-- Repo and branch coverage: `timetoadyDotCom` — feature branch (TBD).
-- PR links: TBD
-- Reviewer automation status: TBD (check repo for Copilot/CodeRabbit)
-- Review status: TBD
-- Closeout status: TBD
+- Repo and branch coverage: `timetoadyDotCom` — `feature/app-privacy-policies-and-cloudflare` (2 commits: privacy pattern + Cloudflare `92eb05d`; copy cleanup `8bbd27d`).
+- PR links: https://github.com/timetoady/timetoadyDotCom/pull/2
+- Reviewer automation status: none configured (no branch protection; PR #1 merged with zero reviews). Copilot review can be requested manually from the PR's Reviewers panel if desired.
+- Review status: awaiting developer decision (self-review / Copilot / merge).
+- Closeout status: pending
 
 ## Test and QA
 
