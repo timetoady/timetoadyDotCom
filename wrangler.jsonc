@@ -1,0 +1,8 @@
+{
+  // Cloudflare Pages config for the static Astro build.
+  // Deploy with `npm run deploy` (runs `astro build` then `wrangler pages deploy`).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "timetoady",
+  "compatibility_date": "2026-07-10",
+  "pages_build_output_dir": "dist"
+}

@@ -13,8 +13,8 @@ import { apps } from '../../../data/apps';
 >
   <PageHero
     eyebrow="App support"
-    title="Practical support entries for current and upcoming timetoady apps."
-    intro="Support pages for timetoady's Android apps. Right now that's one shared hub covering RomajiOverlay; each app gets its own page as it ships."
+    title="Support for timetoady's Android apps."
+    intro="Right now that's one shared hub covering RomajiOverlay."
     theme="codeworks"
     variant="split"
   >
@@ -29,10 +29,6 @@ import { apps } from '../../../data/apps';
           <strong>RomajiOverlay</strong>
           <span>The current Android app — support and privacy covered by the shared hub below.</span>
         </div>
-        <div>
-          <strong>Room to grow</strong>
-          <span>When an app needs its own FAQs, it gets its own page here.</span>
-        </div>
       </div>
     </div>
   </PageHero>
@@ -41,10 +37,6 @@ import { apps } from '../../../data/apps';
     <div class="shell">
       <div class="app-directory-list">
         {apps.map((app) => <AppCard app={app} />)}
-        <article class="panel panel--quiet">
-          <p class="eyebrow">Coming soon</p>
-          <p>As more apps go live, each gets its own page here.</p>
-        </article>
       </div>
     </div>
   </section>

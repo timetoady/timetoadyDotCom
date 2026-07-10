@@ -45,6 +45,7 @@ npm run test:e2e
 - Contact defaults: `src/data/contact.ts`
 - Codeworks venture copy: `src/data/ventures.ts`
 - App support entries: `src/data/apps.ts`
+- Per-app privacy policies: `src/content/privacy/<slug>.md` (auto-builds at `/codeworks/privacy/<slug>/` and lists on the privacy index)
 - Songworks process and channels: `src/data/songworks.ts`
 
 The current launch uses default email placeholders:
@@ -56,12 +57,15 @@ Provision those mailboxes before publishing, or replace them in the data layer.
 
 ## Deployment quick start
 
-1. Run `npm run build`.
-2. Upload the contents of `dist/` to Bluehost `public_html`.
+The site deploys to Cloudflare Pages as static output.
+
+1. First-time setup: `npx wrangler login`, then confirm with `npm run cf:whoami`.
+2. Run `npm run deploy` (runs `npm run build`, then `wrangler pages deploy`).
 3. Confirm HTTPS, support, and privacy URLs load publicly.
 4. Update any Play Store listings to use the live `timetoady.com` URLs.
 
-Detailed operations steps live in [docs/operations.md](/Users/adama/git%20repos/timetoadyDotCom/docs/operations.md).
+Cloudflare Pages config lives in `wrangler.jsonc`; response headers are in `public/_headers`.
+Detailed operations steps live in [docs/operations.md](docs/operations.md).
 
 ## MCP tooling
 
@@ -70,4 +74,4 @@ This machine now has Codex MCP entries configured globally for:
 - `context7`
 - `playwright`
 
-The setup commands and maintenance notes are documented in [docs/operations.md](/Users/adama/git%20repos/timetoadyDotCom/docs/operations.md).
+The setup commands and maintenance notes are documented in [docs/operations.md](docs/operations.md).

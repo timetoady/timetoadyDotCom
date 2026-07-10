@@ -1,7 +1,12 @@
 ---
+import { getCollection } from 'astro:content';
 import PageHero from '../../../components/PageHero.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { contact } from '../../../data/contact';
+
+const appPolicies = (await getCollection('privacy')).sort((a, b) =>
+  a.data.app.localeCompare(b.data.app),
+);
 ---
 
 <BaseLayout
@@ -13,7 +18,7 @@ import { contact } from '../../../data/contact';
   <PageHero
     eyebrow="Privacy policy"
     title="Privacy information for timetoady Codeworks."
-    intro="This page describes how the timetoady Codeworks website and support pages handle information. It stays as plain HTML so it can be linked directly from Play Store listings and public support pages."
+    intro="How the timetoady Codeworks website and support pages handle information."
     theme="codeworks"
     variant="document"
   >
@@ -33,6 +38,7 @@ import { contact } from '../../../data/contact';
               <a href="#scope">Scope and updates</a>
               <a href="#website-data">Website data handling</a>
               <a href="#support-communications">Support communications</a>
+              <a href="#app-policies">App privacy policies</a>
               <a href="#app-disclosures">App-specific disclosures</a>
               <a href="#external-links">External links</a>
               <a href="#contact">Contact</a>
@@ -50,17 +56,17 @@ import { contact } from '../../../data/contact';
           <p class="eyebrow">Scope and updates</p>
           <h2>What this policy covers right now.</h2>
           <p>
-            This policy covers the public timetoady Codeworks website and the launch support pages hosted on
+            This policy covers the public timetoady Codeworks website and the support pages hosted on
             timetoady.com. If a future app uses analytics, accounts, payments, or additional third-party services,
-            this policy should be expanded before that app is published or updated.
+            this policy will be updated before that app ships.
           </p>
         </section>
 
         <section class="policy-section" id="website-data">
           <h2>Website data handling</h2>
           <p>
-            The public website is a static site hosted through Bluehost. It does not provide account creation,
-            comments, direct uploads, or a custom contact form.
+            The public website is a static site hosted through Cloudflare Pages. It does not provide account
+            creation, comments, direct uploads, or a custom contact form.
           </p>
           <p>
             If you choose to send an email to a listed contact address, your message and any information you include
@@ -74,6 +80,30 @@ import { contact } from '../../../data/contact';
             Support emails may include device details, app names, screenshots, or issue descriptions. That information
             is used only to respond to support requests, investigate bugs, and improve app quality. It is not sold.
           </p>
+        </section>
+
+        <section class="policy-section" id="app-policies">
+          <h2>App privacy policies</h2>
+          <p>
+            Individual apps that need their own privacy policy publish it here. Each policy has its own page and
+            can be linked directly from a Play Store listing.
+          </p>
+          {
+            appPolicies.length > 0 ? (
+              <ul class="policy-list">
+                {appPolicies.map((policy) => (
+                  <li>
+                    <a href={`/codeworks/privacy/${policy.id}/`}>{policy.data.app} privacy policy</a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>
+                No app-specific policies are published yet. Apps currently covered by this page are described
+                below.
+              </p>
+            )
+          }
         </section>
 
         <section class="policy-section" id="app-disclosures">

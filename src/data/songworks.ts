@@ -3,10 +3,9 @@ import type { SongworksChannel, SongworksFeaturedMedia, SongworksProcessStep } f
 
 export const songworksSummary = {
   title: 'timetoady Songworks',
-  summary:
-    'A songwriting and release practice built around original lyrics, AI-assisted composition, mastering, and consistent public publishing.',
+  summary: 'Lyric-led songs — written, composed, and released by one person.',
   description:
-    'Songworks turns a lyric into a finished release through one repeatable solo workflow — write, compose, master, publish. Here is what the project is, how the songs get made, and where to follow along.',
+    'Songworks turns a lyric into a finished release through one repeatable solo workflow — write, compose, master, publish.',
 };
 
 export const songworksProcess: SongworksProcessStep[] = [

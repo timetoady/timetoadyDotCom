@@ -1358,6 +1358,48 @@ p {
   font-size: 0.94rem;
 }
 
+/* Rendered-markdown per-app policies (/codeworks/privacy/<slug>/). */
+.policy-prose {
+  max-width: 46rem;
+}
+
+.policy-prose > * + * {
+  margin-top: 1rem;
+}
+
+.policy-prose h2 {
+  margin-top: 1.8rem;
+  font-size: 1.55rem;
+  scroll-margin-top: 7rem;
+}
+
+.policy-prose h3 {
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
+}
+
+.policy-prose ul {
+  margin-top: 0.9rem;
+  padding-left: 1.1rem;
+}
+
+.policy-prose li + li {
+  margin-top: 0.45rem;
+}
+
+.policy-prose code {
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--section-accent) 12%, transparent);
+  font-size: 0.92em;
+}
+
+.policy-back {
+  margin-top: 1.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-subtle);
+}
+
 .media-frame {
   overflow: hidden;
   padding: 0;

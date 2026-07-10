@@ -12,6 +12,8 @@
     "preview": "astro preview",
     "preview:hosted": "astro preview --host 127.0.0.1 --port 4321",
     "astro": "astro",
+    "deploy": "npm run build && wrangler pages deploy",
+    "cf:whoami": "wrangler whoami",
     "test:e2e:runner": "playwright test",
     "test:e2e": "npm run build && start-server-and-test preview:hosted http://127.0.0.1:4321 test:e2e:runner",
     "test:e2e:ui": "npm run build && start-server-and-test preview:hosted http://127.0.0.1:4321 \"playwright test --ui\""
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "start-server-and-test": "^2.1.2"
+    "start-server-and-test": "^2.1.2",
+    "wrangler": "^4.110.0"
   }
 }

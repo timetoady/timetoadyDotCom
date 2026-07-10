@@ -9,7 +9,7 @@ export const apps: AppEntry[] = [
     shortDescription:
       'Support and privacy for RomajiOverlay and any other timetoady Codeworks Android apps.',
     longDescription:
-      'This is the support landing point for timetoady Codeworks Android apps, including RomajiOverlay — an accessibility overlay that adds romaji to Japanese text. Whichever app sent you here, this is where to reach the developer for help and find the privacy policy that applies. RomajiOverlay runs fully on-device and collects no personal data.',
+      'Support for timetoady Codeworks Android apps, including RomajiOverlay — an accessibility overlay that adds romaji to Japanese text. RomajiOverlay runs fully on-device and collects no personal data. Whichever app sent you here, this is where to reach the developer and find the privacy policy that applies.',
     playStoreUrl: null,
     supportEmail: contact.supportEmail,
     privacyPolicyUrl: '/codeworks/privacy/',
@@ -26,16 +26,11 @@ export const apps: AppEntry[] = [
         answer:
           'The privacy policy is published at /codeworks/privacy/ and is linked from each app listing. RomajiOverlay processes text on-device only and stores no personal data.',
       },
-      {
-        question: 'Will future apps get dedicated pages?',
-        answer:
-          'Yes. This route is the shared support entry point for launch, and dedicated app pages can be added as new Play Store releases go live.',
-      },
     ],
     supportNotes: [
-      'Support requests should include the app name or listing name if available.',
-      'Feature requests and bug reports are both accepted through the same support channel.',
-      'Response times may vary around release periods, but email remains the primary contact method.',
+      'Include the app name and, if you have it, the Play Store listing name.',
+      'Add your device model and Android version.',
+      'Screenshots or reproduction steps help if the issue is visual.',
     ],
   },
 ];

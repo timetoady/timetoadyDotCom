@@ -4,7 +4,7 @@
 
 - Present timetoady as a solo studio with two public ventures: Codeworks and Songworks.
 - Give Play Store visitors a credible developer destination with support and privacy coverage.
-- Keep launch architecture static and Bluehost-friendly.
+- Keep launch architecture static and host-agnostic (deployed via Cloudflare Pages).
 - Preserve a clean path to later data-backed expansion, including Supabase.
 
 ## In-scope v1 deliverables
@@ -41,13 +41,12 @@
 - [ ] Add live Play Store URLs when public app listings are available
 - [ ] Expand privacy disclosures before launching any app that uses analytics, accounts, ads, or remote storage
 
-## Bluehost launch checklist
+## Cloudflare Pages launch checklist
 
-- [ ] Confirm domain DNS for `timetoady.com`
-- [ ] Confirm SSL is active in Bluehost
-- [ ] Confirm shell access is enabled if CLI deployment is desired
-- [ ] Back up current `public_html` contents
-- [ ] Upload fresh `dist/` contents
+- [ ] Confirm domain DNS for `timetoady.com` points at Cloudflare
+- [ ] Confirm SSL/TLS is active in Cloudflare
+- [ ] Authenticate Wrangler (`npx wrangler login`; verify with `npm run cf:whoami`)
+- [ ] Deploy a fresh build with `npm run deploy`
 - [ ] Smoke-test homepage, Codeworks, support, privacy, Songworks, and app support routes
 - [ ] Update Play Store developer profile and any app listings with live support/privacy URLs
 

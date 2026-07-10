@@ -3,10 +3,11 @@ import { expect, test } from '@playwright/test';
 const routes = [
   { path: '/', heading: /Apps and songs from one independent studio/i },
   { path: '/codeworks/', heading: /Installed one of my apps/i },
-  { path: '/codeworks/apps/', heading: /Practical support entries/i },
+  { path: '/codeworks/apps/', heading: /Support for timetoady's Android apps/i },
   { path: '/codeworks/apps/android-apps/', heading: /timetoady Android Apps/i },
   { path: '/codeworks/support/', heading: /Email-first support/i },
   { path: '/codeworks/privacy/', heading: /Privacy information for timetoady Codeworks/i },
+  { path: '/codeworks/privacy/indigo-blast/', heading: /Indigo Blast privacy policy/i },
   { path: '/songworks/', heading: /Our Fortress/i },
 ];
 
@@ -50,6 +51,32 @@ test('privacy page exposes jump links for document sections', async ({ page }) =
     'href',
     '#support-communications',
   );
+});
+
+test('privacy index lists and links per-app policies', async ({ page }) => {
+  await page.goto('/codeworks/privacy/');
+
+  await expect(page.getByRole('link', { name: 'Indigo Blast privacy policy' })).toHaveAttribute(
+    'href',
+    '/codeworks/privacy/indigo-blast/',
+  );
+});
+
+test('per-app privacy policy renders content and a back link', async ({ page }) => {
+  await page.goto('/codeworks/privacy/indigo-blast/');
+
+  await expect(page.getByRole('heading', { name: 'Optional global leaderboard' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Email support' })).toHaveAttribute(
+    'href',
+    'mailto:support@timetoady.com',
+  );
+  await expect(page.getByRole('link', { name: /All privacy policies/i }).first()).toHaveAttribute(
+    'href',
+    '/codeworks/privacy/',
+  );
+  // The displayed date must match the frontmatter date (timezone-independent).
+  const updated = page.locator('time[datetime="2026-07-10"]');
+  await expect(updated).toHaveText('July 10, 2026');
 });
 
 test('songworks exposes a privacy-enhanced featured youtube embed', async ({ page }) => {
