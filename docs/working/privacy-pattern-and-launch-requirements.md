@@ -97,6 +97,7 @@ Dimensions scored 1-10. **Passing bar: every dimension >= 7 and overall >= 8.**
 - [x] Run senior-dev pass (date TZ fix + regression test; CSP intentionally deferred)
 - [x] Run independent critique and persona/UX review (9/10, above bar)
 - [x] Clear the quality bar via the quality-gate loop (final overall 9)
+- [x] Copy review board (3 parallel reviewers) + apply approved de-AI-smell edits: cut Support-promise section, "Coming soon" panel, "Room to grow"/"Made to grow"/"Future additions" roadmap copy, methodology FAQ; rewrote support/privacy/apps heroes, footer taglines, Songworks process intro + at-a-glance, ventures bullets, homeHighlights, 404; updated smoke-test heading assertion
 - [ ] Create PR
 - [ ] Handle review comments
 - [ ] Post closeout summary with PR and QA notes

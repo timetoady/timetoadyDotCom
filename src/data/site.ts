@@ -18,8 +18,8 @@ export const navItems: LinkItem[] = [
 
 // homeHighlights renders in the "What you can count on" panel on the home page.
 export const homeHighlights = [
-  'One studio behind both the apps and the songs — not a faceless publisher account.',
-  'Every app gets a real support page and a privacy policy you can actually find.',
+  'One studio behind both the apps and the songs.',
+  'Every app has a support page and a privacy policy.',
   'A working developer reads the inbox and answers it.',
 ] as const;
 

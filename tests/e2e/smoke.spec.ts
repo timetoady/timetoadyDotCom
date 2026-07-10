@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 const routes = [
   { path: '/', heading: /Apps and songs from one independent studio/i },
   { path: '/codeworks/', heading: /Installed one of my apps/i },
-  { path: '/codeworks/apps/', heading: /Practical support entries/i },
+  { path: '/codeworks/apps/', heading: /Support for timetoady's Android apps/i },
   { path: '/codeworks/apps/android-apps/', heading: /timetoady Android Apps/i },
   { path: '/codeworks/support/', heading: /Email-first support/i },
   { path: '/codeworks/privacy/', heading: /Privacy information for timetoady Codeworks/i },

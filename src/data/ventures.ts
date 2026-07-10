@@ -7,13 +7,13 @@ export const ventures: VentureEntry[] = [
     eyebrow: 'Developer presence',
     headline: 'The developer behind the apps, plus the support and privacy pages that back them.',
     summary:
-      'Codeworks is the software side of timetoady. It tells you who built the app on your phone, where to get help, and where the privacy policy lives — straight from the developer, no support-ticket maze.',
+      'Codeworks is the software side of timetoady. It tells you who built the app on your phone, where to get help, and where the privacy policy lives — straight from the developer.',
     href: '/codeworks/',
     accent: 'codeworks',
     bullets: [
       'Developer identity for Play Store visitors',
-      'App portfolio scaffolding with room for future releases',
-      'Email-first support and policy coverage',
+      'A page for each app, with support and privacy links',
+      'Email-first support',
     ],
     ctaLabel: 'Explore Codeworks',
   },
@@ -27,9 +27,9 @@ export const ventures: VentureEntry[] = [
     href: '/songworks/',
     accent: 'songworks',
     bullets: [
-      'Clear creative process from lyric writing to release',
+      'Original lyrics on every track',
       'Channel links for listeners and collaborators',
-      'Lightweight launch scope with room for a future catalog',
+      'New singles as they land',
     ],
     ctaLabel: 'Visit Songworks',
   },
