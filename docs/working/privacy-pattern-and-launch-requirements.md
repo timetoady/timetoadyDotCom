@@ -11,9 +11,9 @@
 - Senior-dev pass: **complete** (fixed date TZ off-by-one + regression test; DRY sweep clean)
 - Independent critique and persona review: **complete** (independent reviewer 9/10 overall, all dims >=8; browser persona pass clean)
 - Quality-gate loop: **complete** (closed cheap gaps; above bar)
-- PR creation: pending
-- Review handling: pending
-- Closeout: pending
+- PR creation: **complete** (PR #2)
+- Review handling: **skipped by developer decision** (solo repo, no Copilot reviewer available; independent agent review + green tests stand in)
+- Closeout: **complete** (2026-07-10)
 
 ## Summary
 
@@ -98,9 +98,9 @@ Dimensions scored 1-10. **Passing bar: every dimension >= 7 and overall >= 8.**
 - [x] Run independent critique and persona/UX review (9/10, above bar)
 - [x] Clear the quality bar via the quality-gate loop (final overall 9)
 - [x] Copy review board (3 parallel reviewers) + apply approved de-AI-smell edits: cut Support-promise section, "Coming soon" panel, "Room to grow"/"Made to grow"/"Future additions" roadmap copy, methodology FAQ; rewrote support/privacy/apps heroes, footer taglines, Songworks process intro + at-a-glance, ventures bullets, homeHighlights, 404; updated smoke-test heading assertion
-- [ ] Create PR
-- [ ] Handle review comments
-- [ ] Post closeout summary with PR and QA notes
+- [x] Create PR (#2)
+- [x] Handle review comments (skipped by developer decision — solo repo)
+- [x] Post closeout summary with PR and QA notes
 
 ## Open items for developer (external facts / actions)
 
@@ -116,8 +116,40 @@ Dimensions scored 1-10. **Passing bar: every dimension >= 7 and overall >= 8.**
 - Repo and branch coverage: `timetoadyDotCom` — `feature/app-privacy-policies-and-cloudflare` (2 commits: privacy pattern + Cloudflare `92eb05d`; copy cleanup `8bbd27d`).
 - PR links: https://github.com/timetoady/timetoadyDotCom/pull/2
 - Reviewer automation status: none configured (no branch protection; PR #1 merged with zero reviews). Copilot review can be requested manually from the PR's Reviewers panel if desired.
-- Review status: awaiting developer decision (self-review / Copilot / merge).
-- Closeout status: pending
+- Review status: skipped by developer decision; PR #2 merged to `main` 2026-07-10.
+- Closeout status: complete — see Delivery Summary below.
+
+## Delivery Summary (Closeout)
+
+PRs merged:
+
+- https://github.com/timetoady/timetoadyDotCom/pull/2 — markdown-driven per-app privacy policies (seeded with Indigo Blast), Cloudflare Pages readiness (wrangler + `_headers` + deploy scripts), Bluehost→Cloudflare doc reconciliation, and a site-wide copy cleanup driven by a three-reviewer audit.
+
+Validation completed:
+
+- `npm run build` green; `/codeworks/privacy/indigo-blast/` generated, in sitemap; `_headers` shipped.
+- `npm run test:e2e`: 37 passed / 8 mobile-only skips, including new coverage for the policy route, index listing, back link, support mailto, and a timezone regression assertion on the rendered date.
+- Manual browser persona pass (desktop + mobile): hub → policy → back-link flow, no console errors.
+- Quality gate: final scores Correctness 9, Scope-fit 9, Simplicity/DRY 9, Test coverage 9, UX/DX 9, Docs 9 (bar: all >=7, overall >=8). Accepted residual gaps: no CSP; markdown links same-tab; HSTS without includeSubDomains; empty-collection path untested.
+- Review feedback: skipped by developer decision (solo repo).
+
+QA smoke (post-deploy):
+
+1. `https://timetoady.com/codeworks/privacy/` — lists "Indigo Blast privacy policy"; Cloudflare wording in Website-data section.
+2. `https://timetoady.com/codeworks/privacy/indigo-blast/` — full policy, "Last updated: July 10, 2026", working mailto + back link.
+3. Spot-check `/`, `/codeworks/`, `/codeworks/apps/`, `/codeworks/support/`, `/songworks/` for the trimmed copy.
+4. `curl -sI` the homepage: confirm `Strict-Transport-Security` and `X-Content-Type-Options` headers arrive from Pages.
+
+How to add the next app policy:
+
+- Drop `src/content/privacy/<slug>.md` with frontmatter (`app`, `lastUpdated`, `summary`, optional `appHref`/`supportEmail`); build + deploy. Page appears at `/codeworks/privacy/<slug>/` and on the index automatically.
+
+Remaining pre-launch items (owner):
+
+- Provision/confirm `hello@` and `support@timetoady.com` mailboxes.
+- RomajiOverlay Play Store URL for `apps.ts` when live.
+- Deploy: `npm run deploy` (first run creates the `timetoady` Pages project), then map the apex domain in the Cloudflare dashboard.
+- Cross-repo: commit/push the policy in `indigoBlast` and set its "Hosted at" to `https://timetoady.com/codeworks/privacy/indigo-blast/`.
 
 ## Test and QA
 
