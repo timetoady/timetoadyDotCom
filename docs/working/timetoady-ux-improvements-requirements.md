@@ -43,7 +43,7 @@
 - **Evidence artifacts (this review, not committed):**
   `tests/e2e/ux-review/capture.mjs`, `tests/e2e/ux-review/measurements.json`,
   `tests/e2e/ux-review/shots/*.png` (20 full-page shots + menu-open variants across 1440/1024/412/360/320).
-- **Known constraints:** static Bluehost hosting (no SSR), email-first support (no forms), minimal-JS
+- **Known constraints:** static hosting (Cloudflare Pages, no SSR), email-first support (no forms), minimal-JS
   ethos — fixes should stay CSS-first and reuse existing tokens where possible.
 
 ### Quantified evidence (measured)

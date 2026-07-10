@@ -63,50 +63,36 @@ Notes:
 - No API secrets were committed into this repository.
 - If `codex mcp add` fails because `config.toml` is locked, retry sequentially instead of in parallel.
 
-## Bluehost deployment
+## Cloudflare Pages deployment
 
-### Recommended workflow
+The site ships as static output to Cloudflare Pages. Config lives in `wrangler.jsonc`
+(`pages_build_output_dir: dist`); response headers live in `public/_headers`.
 
-1. Run `npm run build`.
-2. Verify `dist/` includes:
+### One-time setup
+
+1. Authenticate Wrangler: `npx wrangler login` (opens a browser OAuth flow).
+2. Confirm the session: `npm run cf:whoami`.
+
+### Recommended workflow (Wrangler CLI)
+
+1. Verify `dist/` includes the expected routes after a build (`npm run build`):
    - `index.html`
    - `codeworks/index.html`
    - `codeworks/apps/index.html`
    - `codeworks/apps/android-apps/index.html`
    - `codeworks/support/index.html`
    - `codeworks/privacy/index.html`
+   - `codeworks/privacy/indigo-blast/index.html`
    - `songworks/index.html`
-3. Back up the existing Bluehost `public_html` contents before replacing anything.
-4. Upload the contents of `dist/` into `public_html`.
-5. Verify the site over HTTPS on the live domain.
+2. Deploy with `npm run deploy` (runs `npm run build`, then `wrangler pages deploy`).
+   The first deploy creates the `timetoady` Pages project.
+3. Verify the site over HTTPS on the preview URL, then on the live domain.
 
-### SSH/SCP path
+### Git-connected alternative
 
-If Bluehost shell access is enabled, use a CLI flow like this:
-
-```bash
-npm run build
-scp -r dist/* USER@HOST:~/public_html/
-```
-
-Recommended shell-side backup before replacing files:
-
-```bash
-ssh USER@HOST
-mkdir -p ~/site-backups/timetoady-$(date +%Y%m%d-%H%M%S)
-cp -a ~/public_html/. ~/site-backups/timetoady-$(date +%Y%m%d-%H%M%S)/
-```
-
-If you need a fully clean replacement, move the old site contents aside after backing them up, then copy in the new `dist/` output.
-
-### SFTP or cPanel fallback
-
-If shell access is unavailable:
-
-1. Build locally with `npm run build`.
-2. Upload the contents of `dist/` using cPanel File Manager or SFTP.
-3. Preserve the directory structure exactly as generated.
-4. Re-check support and privacy routes after upload.
+Instead of the CLI, the repo can be connected in the Cloudflare Pages dashboard with
+build command `npm run build` and output directory `dist`; pushes then deploy automatically.
+Adding an app privacy policy is just a new `src/content/privacy/<slug>.md` file — no config change.
 
 ## Post-deploy smoke check
 
@@ -118,6 +104,7 @@ Confirm these URLs load publicly:
 - `https://timetoady.com/codeworks/apps/android-apps/`
 - `https://timetoady.com/codeworks/support/`
 - `https://timetoady.com/codeworks/privacy/`
+- `https://timetoady.com/codeworks/privacy/indigo-blast/`
 - `https://timetoady.com/songworks/`
 
 Also verify:
@@ -133,4 +120,5 @@ Also verify:
 - [Astro deploy docs](https://docs.astro.build/en/guides/deploy/)
 - [Play Console developer account details](https://support.google.com/googleplay/android-developer/answer/139626/manage-your-developer-account-information?hl=en-GB)
 - [Google Play privacy policy requirement](https://support.google.com/googleplay/android-developer/answer/16944162?hl=en)
-- [Bluehost shell/public_html reference PDF](https://www.bluehost.com/static/downloads/blueprint-pro-guide.pdf)
+- [Cloudflare Pages deploy docs](https://developers.cloudflare.com/pages/)
+- [Wrangler CLI docs](https://developers.cloudflare.com/workers/wrangler/)

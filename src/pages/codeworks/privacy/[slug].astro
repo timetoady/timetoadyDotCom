@@ -1,0 +1,69 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageHero from '../../../components/PageHero.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { contact } from '../../../data/contact';
+
+export async function getStaticPaths() {
+  const policies = await getCollection('privacy');
+  return policies.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { app, lastUpdated, summary, appHref, supportEmail } = entry.data;
+const email = supportEmail ?? contact.supportEmail;
+// Frontmatter dates parse as UTC midnight; format in UTC so the displayed day
+// matches the authored date regardless of the build machine's timezone.
+const updatedLabel = lastUpdated.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+const updatedIso = lastUpdated.toISOString().slice(0, 10);
+---
+
+<BaseLayout
+  title={`${app} Privacy Policy`}
+  description={summary}
+  path={`/codeworks/privacy/${entry.id}/`}
+  theme="codeworks"
+>
+  <PageHero
+    eyebrow="App privacy policy"
+    title={`${app} privacy policy`}
+    intro={summary}
+    theme="codeworks"
+    variant="document"
+  >
+    <div class="button-row">
+      <a class="button button--primary" href={`mailto:${email}`}>Email support</a>
+      <a class="button button--ghost" href="/codeworks/privacy/">All privacy policies</a>
+      {
+        appHref && (
+          <a class="button button--ghost" href={appHref} target="_blank" rel="noreferrer">
+            View app
+          </a>
+        )
+      }
+    </div>
+  </PageHero>
+
+  <section class="section-block">
+    <div class="shell">
+      <article class="policy-prose">
+        <p class="policy-meta">
+          <strong>Last updated:</strong> <time datetime={updatedIso}>{updatedLabel}</time>
+        </p>
+        <Content />
+        <p class="policy-back">
+          <a href="/codeworks/privacy/">← All privacy policies</a>
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
