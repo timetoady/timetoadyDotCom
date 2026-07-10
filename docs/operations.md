@@ -92,7 +92,14 @@ The site ships as static output to Cloudflare Pages. Config lives in `wrangler.j
 
 Instead of the CLI, the repo can be connected in the Cloudflare Pages dashboard with
 build command `npm run build` and output directory `dist`; pushes then deploy automatically.
-Adding an app privacy policy is just a new `src/content/privacy/<slug>.md` file — no config change.
+
+## Adding an app privacy policy
+
+One markdown file: `src/content/privacy/<slug>.md` auto-builds at `/codeworks/privacy/<slug>/`
+and auto-lists on `/codeworks/privacy/`. Frontmatter schema, body conventions, and verification
+steps are documented in [CLAUDE.md](../CLAUDE.md) ("Adding an app privacy policy"); the Indigo
+Blast file is the working reference. Source policies are authored in each app's own repo
+(`docs/privacy/privacy-policy.md`) and copied here when the app is ready.
 
 ## Post-deploy smoke check
 

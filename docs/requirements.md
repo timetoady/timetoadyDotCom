@@ -35,8 +35,8 @@
 
 ## Content defaults that still need owner confirmation
 
-- [ ] Confirm final support mailbox to publish on the live site
-- [ ] Confirm final general/business mailbox to publish on the live site
+- [x] Confirm final support mailbox to publish on the live site (`support@timetoady.com` — confirmed working 2026-07-10)
+- [x] Confirm final general/business mailbox to publish on the live site (`hello@timetoady.com` — confirmed working 2026-07-10)
 - [ ] Replace the umbrella app support entry with real app-specific listings once they exist
 - [ ] Add live Play Store URLs when public app listings are available
 - [ ] Expand privacy disclosures before launching any app that uses analytics, accounts, ads, or remote storage

@@ -104,7 +104,7 @@ Dimensions scored 1-10. **Passing bar: every dimension >= 7 and overall >= 8.**
 
 ## Open items for developer (external facts / actions)
 
-- [ ] Are `hello@timetoady.com` / `support@timetoady.com` mailboxes provisioned? (mailto links depend on it)
+- [x] `hello@timetoady.com` / `support@timetoady.com` mailboxes confirmed working (2026-07-10).
 - [ ] Is RomajiOverlay's Play Store listing live? If so, provide URL for `apps.ts` `playStoreUrl`.
 - [ ] Keep or cut the "Coming soon" apps panel at launch?
 - [x] Wrangler auth configured (global install; `CLOUDFLARE_API_TOKEN` Account API Token; Pages access confirmed via `wrangler pages project list`).
@@ -146,7 +146,7 @@ How to add the next app policy:
 
 Remaining pre-launch items (owner):
 
-- Provision/confirm `hello@` and `support@timetoady.com` mailboxes.
+- ~~Provision/confirm mailboxes~~ — confirmed working 2026-07-10.
 - RomajiOverlay Play Store URL for `apps.ts` when live.
 - Deploy: `npm run deploy` (first run creates the `timetoady` Pages project), then map the apex domain in the Cloudflare dashboard.
 - Cross-repo: commit/push the policy in `indigoBlast` and set its "Hosted at" to `https://timetoady.com/codeworks/privacy/indigo-blast/`.

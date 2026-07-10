@@ -48,12 +48,12 @@ npm run test:e2e
 - Per-app privacy policies: `src/content/privacy/<slug>.md` (auto-builds at `/codeworks/privacy/<slug>/` and lists on the privacy index)
 - Songworks process and channels: `src/data/songworks.ts`
 
-The current launch uses default email placeholders:
+Contact addresses (both provisioned and working):
 
-- `hello@timetoady.com`
-- `support@timetoady.com`
+- `hello@timetoady.com` (general/business)
+- `support@timetoady.com` (app support)
 
-Provision those mailboxes before publishing, or replace them in the data layer.
+For the full guide to adding an app privacy policy, see [CLAUDE.md](CLAUDE.md).
 
 ## Deployment quick start
 
