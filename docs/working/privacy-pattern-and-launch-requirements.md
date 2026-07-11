@@ -150,7 +150,7 @@ Remaining pre-launch items (owner):
 - RomajiOverlay Play Store URL for `apps.ts` when live.
 - ~~Deploy~~ — DONE 2026-07-10: `timetoady` Pages project created; deployed and verified at https://timetoady.pages.dev/.
 - ~~Map apex domain~~ — DONE 2026-07-10: `timetoady.com` attached to the Pages project via API; apex DNS repointed from the old Bluehost A record (66.81.203.198) to `timetoady.pages.dev` (CNAME, proxied). **SITE IS LIVE** — all routes 200 over HTTPS with security headers; sitemap serving. Titan email records (MX/SPF/DMARC) untouched.
-- OPEN: `www.timetoady.com` still points at the dead Bluehost IP → 522. Fix: attach `www` as a Pages custom domain + repoint its A record, or delete/redirect it.
+- ~~www fix~~ — DONE 2026-07-10: `www.timetoady.com` attached to the Pages project and its A record repointed to `timetoady.pages.dev` (CNAME, proxied). Verified 200 on `/` and the Indigo Blast privacy route. Both apex and www now serve the site.
 - Cross-repo: commit/push the policy in `indigoBlast` and set its "Hosted at" to `https://timetoady.com/codeworks/privacy/indigo-blast/`.
 
 ## Test and QA
