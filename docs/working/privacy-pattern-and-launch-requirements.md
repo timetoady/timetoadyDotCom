@@ -148,7 +148,7 @@ Remaining pre-launch items (owner):
 
 - ~~Provision/confirm mailboxes~~ — confirmed working 2026-07-10.
 - RomajiOverlay Play Store URL for `apps.ts` when live.
-- Deploy: `npm run deploy` (first run creates the `timetoady` Pages project), then map the apex domain in the Cloudflare dashboard.
+- ~~Deploy~~ — DONE 2026-07-10: `timetoady` Pages project created; deployed and verified at https://timetoady.pages.dev/ (200s on privacy routes, security headers live). Remaining: map the `timetoady.com` apex domain to the Pages project.
 - Cross-repo: commit/push the policy in `indigoBlast` and set its "Hosted at" to `https://timetoady.com/codeworks/privacy/indigo-blast/`.
 
 ## Test and QA
